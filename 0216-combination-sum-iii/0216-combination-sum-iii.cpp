@@ -1,11 +1,11 @@
 class Solution {
 public:
     void solve(int ind,int k,int target,vector<int>& nums,vector<int>& temp,vector<vector<int>>& ans){
-         if(temp.size()==k){
-            if(target==0){
+         if(temp.size()==k and target==0){
+            
                 ans.push_back(temp);
                 return;
-            }
+            
         }
         if(ind==nums.size()){
             return ;
