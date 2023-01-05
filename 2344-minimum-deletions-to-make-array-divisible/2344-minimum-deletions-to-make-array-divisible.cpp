@@ -10,8 +10,12 @@ public:
         //find GCD in numsDivide array
         sort(numsDivide.begin(),numsDivide.end());
         int gcd=numsDivide[0];
+        // for(int i=1;i<numsDivide.size();i++){
+        //     gcd=GCD(gcd,numsDivide[i]);
+        // }
+        //or we can use __gcd function
         for(int i=1;i<numsDivide.size();i++){
-            gcd=GCD(gcd,numsDivide[i]);
+            gcd=__gcd(gcd,numsDivide[i]);
         }
         sort(nums.begin(),nums.end());
         int count=0;
