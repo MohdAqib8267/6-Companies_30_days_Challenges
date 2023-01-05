@@ -1,9 +1,10 @@
 class Solution {
 public:
     int GCD(int a,int b){
-       if (a == 0)
+       if (a == b)
     return b;
-  return gcd(b % a, a);
+        //we know that a<b (sorting)
+  return gcd(b , b-a);
     }
     int minOperations(vector<int>& nums, vector<int>& numsDivide) {
         //find GCD in numsDivide array
