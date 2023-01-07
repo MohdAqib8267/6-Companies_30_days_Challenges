@@ -12,7 +12,7 @@ public:
                 if(i==j){
                     continue;
                 }
-                //calculate distance
+                //calculate distance(avoiding sqrt for Eculidien formula for fast computation)
                 int dist=((points[i][0]-points[j][0])*(points[i][0]-points[j][0]) + (points[i][1]-points[j][1])*(points[i][1]-points[j][1]));
                 mp[dist]++;
             }
