@@ -9,10 +9,10 @@ public:
         }
         high=sum;
         sort(batteries.begin(),batteries.end());//binary search
-        if(n==1){
-            return sum;
-        }
-        while(low<high){
+        // if(n==1){
+        //     return sum;
+        // }
+        while(low<=high){
             long long mid=low+(high-low)/2;
             long long cnt=0;
             long long temp=0;
@@ -29,7 +29,7 @@ public:
                 low=mid+1;
             }
             else{
-                high=mid;
+                high=mid-1;
             }
         }
         return ans;
