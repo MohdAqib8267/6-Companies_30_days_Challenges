@@ -22,6 +22,20 @@ public:
                     temp=temp-mid;
                     cnt++;
                 }
+            
+                //OR
+        //  val = 0, val = (longlong)n*mid; //itni battries ki need hai
+        // for(int i = 0; i < m; i++)
+        // {
+        //     if(batteries[i] < mid)
+        //         val += batteries[i];
+        //     else
+        //         val += mid;
+        // }
+        // if(val >= check){ ans=mid; low=mid+1;}
+        // else{high=mid-1} 
+            
+    
             }
             if(cnt>=n){
                 //mtlab hum mid ko zyada computers me distrubute kr paa rhey hau
