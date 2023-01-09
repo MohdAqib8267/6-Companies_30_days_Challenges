@@ -16,6 +16,17 @@ public:
         return str;
     }
     vector<string> invalidTransactions(vector<string>& transactions) {
+        //make map with 2D string grid
+        //store at same name in grid as vector{time,amount,city}
+        //so 2D will form
+        //itereate over the map
+        //make a visited array
+        //iterate 2D grid or map
+        //if outer loop amount>1000 then this array mark true
+        //else check every array of inner loop--> time diff and city
+        //     if any one match then mark true
+        //after 1 iteration of map
+        //check vis array --> if any true that means it is invalid to store ans
         unordered_map<string,vector<vector<string>>>mp;
         for(int i=0;i<transactions.size();i++){
             vector<string>temp=split(transactions[i]);
