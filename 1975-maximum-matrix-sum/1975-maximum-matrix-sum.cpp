@@ -35,7 +35,32 @@ public:
         }
         return sum-2*small; 
 /*            agar count odd hua to hum dekhnge ki sum ko maximise krne k liye (count-1) elements to shifting kr k khud ko positive bna lenge bss ek number left reh jayega to maximise krne ke liye hum left us number ko chodenge jiska sum per effect kmm ho. jo ki hum small me nikal chuke */
-/*            2 se multiply isliye q ki ek baar to humne user positive kr k sum me jod rkha tha or ek baar uska negtive effect dalne ke liye
-        */
+/*            2 se multiply isliye q ki ek baar to humne usey positive kr k sum me jod rkha tha or ek baar uska negtive effect dalne ke liye example ke liye neechey
+	/*		
+			Why (sum-2*smallestMin) ????
+				In simple words : You had first added that number, 
+				so you need to subtract that addition and also in the
+				end, you need to reduce the sum with that number.
+				That's why we have to substract 2 times.
+				See with the example below :
+				[1,   2, 3]
+				[-1, -2,-3]
+				[1,   2, 3]
+			
+			
+				Over all Sum "S"(all elements with abs value) = 18
+				Negative count = 3 which is odd
+				Smallest number which can be negative is "Min"= 1
+
+				so, 
+				[1,   2, 3]
+				[-1,  2, 3]
+				[1,   2, 3]
+
+				Now, final sum "F" = 1 + 2 + 3 + (-1) + 2 + 3 + 1 + 2 + 3 = 16
+
+				So, final result "F" = "S" - 2*Min  (i.e. 18 - 2*1) = 16
+		*/
+        
     }
 };
