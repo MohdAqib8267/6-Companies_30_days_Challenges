@@ -7,7 +7,8 @@ public:
     multiset<int>s;
     void update(int timestamp, int price) {
         if(mp.find(timestamp)!=mp.end()){
-            s.erase(s.find(mp[timestamp]));
+            auto it=s.find(mp[timestamp]);
+            s.erase(it);
         }
         mp[timestamp]=price;
         s.insert(price);
