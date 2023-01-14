@@ -2,13 +2,13 @@ class Solution {
 public:
      int parent[26]; 
     // Find function to find the representative element of the set containing the character
-    int find(int ch){
-        return ch == parent[ch] ? ch : parent[ch] = find(parent[ch]);
+    int find_set(int ch){
+        return ch == parent[ch] ? ch : parent[ch] = find_set(parent[ch]);
     }
     // Union function to merge the set containing x and the set containing y
     void union_set(int x, int y){
-        x = find(x);
-        y = find(y);
+        x = find_set(x);
+        y = find_set(y);
         if(x < y)
             parent[y] = x;
         else
@@ -29,7 +29,7 @@ public:
         // Iterate through baseStr and find the representative element of the set containing each character
         // and append it to the ans string
         for(char it : baseStr)
-            ans += (char)(find(it - 'a') + 'a');
+            ans += (char)(find_set(it - 'a') + 'a');
         return ans;
     }
 };
