@@ -1,4 +1,22 @@
 class Solution {
+    //DP
+//     The base case is dp[0] = 0, since an empty string is always monotone increasing. Consider dp[i] for i > 0,
+
+// If s[i - 1] = '1', then we have dp[i] = dp[i - 1], since we can always append a character '1' to the end of a monotone increasing string and it's still monotone increasing.
+
+// If s[i - 1] = '0', let's consider whether we flip it or not.
+
+// If we don't flip it, we have to flip all the '1's in s before it.
+// If we flip it, then we can treat it as the above case where s[i - 1] = '1' with one more flip.
+// In summary,
+
+// Let number num be the number of character 1s in s' prefix of length i:
+
+// dp[i] = dp[i - 1] if s[i - 1] = '1'
+// dp[i] = min(num, dp[i - 1] + 1) otherwise.
+// The final answer should be dp[s.length()]
+
+// Since dp[i] only depends on dp[i - 1], we can use a simple int variable instead of an array to reduce the space complexity.
 public:
     int minFlipsMonoIncr(string s) {
         // int n=s.size();
