@@ -2,7 +2,7 @@
 
 <h2 align="center">This is me Revision problems</h2>
 <table width="70%" align="center">
-  <th>
+  <th width="70%">
     <tr>
     <td>S.No</td/>
     <td>Questions</td/>
