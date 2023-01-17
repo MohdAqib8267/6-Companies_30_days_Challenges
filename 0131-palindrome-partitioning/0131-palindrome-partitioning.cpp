@@ -1,11 +1,14 @@
 class Solution {
 public:
    bool isPalindrome(string temp){
-        int m=temp.size();
-        for(int i=0;i<m;i++){
-            if(temp[i]!=temp[m-i-1]){
+        int j=temp.size()-1;
+       int i=0;
+        while(i<=j){
+            if(temp[i]!=temp[j]){
                 return false;
             }
+            i++;
+            j--;
         }
         return true;
     }
