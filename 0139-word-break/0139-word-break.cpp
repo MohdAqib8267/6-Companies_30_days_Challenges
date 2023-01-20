@@ -1,7 +1,7 @@
 class Solution {
 public:
-        // int dp[301];
-int helper(int i,string s,set<string>& wordDict,vector<int>& dp){
+       
+bool helper(int i,string s,set<string>& wordDict,vector<int>& dp){
     string temp;
     if(i>=s.size()){
         return 1;
@@ -21,7 +21,7 @@ int helper(int i,string s,set<string>& wordDict,vector<int>& dp){
 bool wordBreak(string s, vector<string>& wordDict)
 {
     set<string>st;
-    // memset(dp,-1,sizeof dp);
+    
     vector<int>dp(s.size(),-1);
     for(auto a:wordDict)
     st.insert(a);
