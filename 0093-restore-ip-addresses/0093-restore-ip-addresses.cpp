@@ -13,7 +13,7 @@ public:
         }
         return true;
     }
-       void recur(string &s , int indx , int used , vector<string> &res , string curr){
+    void recur(string &s , int indx , int used , vector<string> &res , string curr){
         if (indx == s.size() && used == 4){
             curr.pop_back();
             res.push_back(curr);
@@ -33,13 +33,12 @@ public:
         }
     }
     vector<string> restoreIpAddresses(string s) {
-        string curr="";
+                string curr="";
          if (s.size() > 12) return {};
         int dots=0;
         int i=0;
         vector<string>ans;
         recur(s,i,dots,ans,curr);
         return ans;
-        
     }
 };
