@@ -9,7 +9,7 @@ public:
          {
            sum+=nums[j];
             //let's assume, we modify the all previous element till jth element and we would make all previous elements like ith element and check that number of operations less then k or not
-            while(k<(long)(j-i+1)*nums[j] - sum)
+            while((long)(j-i+1)*nums[j] - sum > k)
            {
                sum-=nums[i];
                i++;
