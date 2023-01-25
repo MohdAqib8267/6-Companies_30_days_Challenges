@@ -10,7 +10,7 @@ public:
                     count++;
                 }
                 if(count>k){
-                    continue;
+                    break;
                 }
                 temp.push_back(nums[j]);
                 s.insert(temp);
