@@ -1,6 +1,9 @@
 class Solution {
 public:
     int find(int a,int b){
+        if(a<b){
+            swap(a,b);
+        }
         if(b==0) return a;
         return find(b,a%b);
     }
