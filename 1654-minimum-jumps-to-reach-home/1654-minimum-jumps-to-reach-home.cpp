@@ -2,10 +2,10 @@ class Solution {
 public:
     int minimumJumps(vector<int>& forbidden, int a, int b, int x) {
         queue<pair<int, pair<int, bool>>> q; // {node, isBackward}
-        q.push({0, {0, false}});
+        q.push({0, {0, true}});
 
         set<int> s{forbidden.begin(), forbidden.end()};
-        vector<int> vis(6000);
+        vector<int> vis(6000,0);
         vis[0] = 1;
 
         int ans = 0;
