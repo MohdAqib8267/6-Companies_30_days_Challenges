@@ -1,6 +1,6 @@
 class Solution {
 public:
-    //ye b check krey
+    //ye b check krey(not properly understand try again)
 //         long long distinctNames(vector<string>& ideas) {
         
 //         int n = ideas.size();
