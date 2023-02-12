@@ -1,6 +1,6 @@
 class Solution {
 public:
-    long long ans=0;
+    
   int dfs(const vector<vector<int>>& graph, int u,vector<bool>&vis, int seats, long long& ans) {
     int people = 1;
       vis[u]=true;
@@ -28,6 +28,7 @@ public:
     }
         
         vector<bool>vis(roads.size()+1,false);
+        long long ans=0;
         dfs(graph, 0, vis, seats, ans);
         return ans;
     }
