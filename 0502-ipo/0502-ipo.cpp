@@ -12,28 +12,32 @@ public:
     //after sorting
     //[{4,1},{3,2},{6,4},{5,5},{4,9},{23,13},{22,15},{40,39},{49,41}]
     //ans=58  (DRY RUN)
+    
+    //greedy
     int findMaximizedCapital(int k, int w, vector<int>& profits, vector<int>& capital) {
+       //maxheap
+        priority_queue<pair<int,int>>pq;
         vector<pair<int,int>>v;
-        for(int i=0;i<profits.size();i++){
-            v.push_back({profits[i],capital[i]});
+        int n=profits.size();
+        for(int i=0;i<n;i++){
+            v.push_back({capital[i],profits[i]});
         }
-        //sort according to capital
-        sort(v.begin(),v.end(),[&](pair<int,int>& a,pair<int,int>& b){
-            return a.second<b.second;
-        });
-            priority_queue<pair<int,int>,vector<pair<int,int>>>pq;
+        sort(v.begin(),v.end());
+       
         int i=0;
-        while(k--){
-            while(i<profits.size() and w>=v[i].second){
-                pq.push(v[i]);
-                i++;
-            }
+        while( k--){
+           while(i<n and v[i].first<=w){
+               pq.push({v[i].second,v[i].first});
+               i++;
+           }
             if(!pq.empty()){
                 w=w+pq.top().first;
-                pq.pop();  
+                 pq.pop(); 
             }
-          
+           
+            
         }
         return w;
+        
     }
 };
