@@ -1,6 +1,6 @@
 class Solution {
 public:
-   int solve(int n,int m,string &word1,string &word2,vector<vector<int>>& dp){
+    int solve(int n,int m,string &word1,string &word2,vector<vector<int>>& dp){
         if(n==0){
             return m;
         }
