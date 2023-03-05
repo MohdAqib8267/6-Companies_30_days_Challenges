@@ -9,6 +9,9 @@ public:
         for(int i=0;i<n;i++) mpp[arr[i]].push_back(i);
         queue<int>q;
         q.push(0);
+        if(arr[0]==arr[n-1] and n>1){
+            return 1;
+        }
         while(!q.empty()){
             int sz=q.size();
             while(sz--){
