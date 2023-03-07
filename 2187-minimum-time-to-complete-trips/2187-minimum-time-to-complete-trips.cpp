@@ -7,7 +7,7 @@ public:
         for(int i=0;i<time.size();i++){
             en=en+time[i];
         }
-        long long ans=1e9;
+        long long res=1e14;
         while(st<=en){
             long long mid=st+(en-st)/2;
             long long cnt=0;
@@ -16,7 +16,7 @@ public:
             }
             
             if(cnt>=totalTrips){
-                ans=min(ans,mid);
+               res=mid;
                 en=mid-1;
             }
             else{
