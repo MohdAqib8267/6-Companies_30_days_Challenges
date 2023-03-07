@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int maximumRobots(vector<int>& ch, vector<int>& runc, long long bd) {
+ int maximumRobots(vector<int>& ch, vector<int>& runc, long long bd) {
    
         int left = 1, right = ch.size();
         int ans = 0;
