@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    void DFS(TreeNode* root,unordered_map<int,int>&left,unordered_map<int,int>&right){
+     void DFS(TreeNode* root,unordered_map<int,int>&left,unordered_map<int,int>&right){
        
         if(left.find(root->val)!=left.end()){
             TreeNode* node = new TreeNode(left[root->val]);
