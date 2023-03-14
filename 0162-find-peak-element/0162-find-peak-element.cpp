@@ -16,7 +16,7 @@ public:
                 low=mid+1;
             }
             else{
-                high=mid;
+                high=mid-1;
             }
         }
         return -1;
