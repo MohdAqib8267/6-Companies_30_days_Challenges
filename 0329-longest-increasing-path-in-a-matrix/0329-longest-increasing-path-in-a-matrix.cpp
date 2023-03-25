@@ -1,15 +1,15 @@
 class Solution {
 public:
-   int dfs(int i, int j, int n, int m, vector<vector<int>>& mat, long long val, vector<vector<int>> &dp)
+   int dfs(int i, int j, int n, int m, vector<vector<int>>& mat, int val, vector<vector<int>> &dp)
     {
         if(i<0 || j<0 || i>=n || j>=m || mat[i][j]<=val)
             return 0;
         if(dp[i][j]!=-1)
             return dp[i][j];
-        long long a = 1+dfs(i+1, j, n, m, mat, mat[i][j], dp);
-        long long b = 1+dfs(i, j+1, n, m, mat, mat[i][j], dp);
-        long long c = 1+dfs(i-1, j, n, m, mat, mat[i][j], dp);
-        long long d = 1+dfs(i, j-1, n, m, mat, mat[i][j], dp);
+        int a = 1+dfs(i+1, j, n, m, mat, mat[i][j], dp);
+        int b = 1+dfs(i, j+1, n, m, mat, mat[i][j], dp);
+        int c = 1+dfs(i-1, j, n, m, mat, mat[i][j], dp);
+        int d = 1+dfs(i, j-1, n, m, mat, mat[i][j], dp);
         return dp[i][j]=  max({a,b,c,d});
     }
     
