@@ -37,7 +37,7 @@ public:
         while(!q.empty()){
             cnt++;
             int node = q.front();
-              if(vis[node]) continue;
+              // if(vis[node]) continue;
             vis[node] = 1;
             q.pop();
             for(auto it:adj[node]){
