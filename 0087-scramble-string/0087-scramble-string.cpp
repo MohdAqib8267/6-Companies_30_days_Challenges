@@ -9,10 +9,12 @@ public:
         }
         //if string length is n, we have n-1 partition points
         int n=s1.size();
-        for(int i=1;i<s1.size();i++){
-            if((solve(s1.substr(0,i),s2.substr(0,i)) and solve(s1.substr(i),s2.substr(i))) or
-               (solve(s1.substr(0,i),s2.substr(n-i)) and solve(s1.substr(i),s2.substr(0,n-i)))){
+        for(int l=1;l<s1.size();l++){
+             bool swap=solve(s1.substr(0,l),s2.substr(n-l,l)) && solve(s1.substr(l,n-l),s2.substr(0,n-l));
+            bool notswap=solve(s1.substr(0,l),s2.substr(0,l)) && solve(s1.substr(l,n-l),s2.substr(l,n-l));
+            if(swap || notswap){
                 return true;
+                break;
             }
         }
         return false;
@@ -33,10 +35,10 @@ public:
         }
         //if string length is n, we have n-1 partition points
         int n=s1.size();
-        for(int i=1;i<s1.size();i++){
-            bool no_swap=solveMemo(s1.substr(0,i),s2.substr(0,i),mp) and solveMemo(s1.substr(i),s2.substr(i),mp);
-            bool swap=solveMemo(s1.substr(0,i),s2.substr(n-i),mp) and solveMemo(s1.substr(i),s2.substr(0,n-i),mp);
-             bool res= swap || no_swap;
+        for(int l=1;l<s1.size();l++){
+             bool swap=solveMemo(s1.substr(0,l),s2.substr(n-l,l),mp) && solveMemo(s1.substr(l,n-l),s2.substr(0,n-l),mp);
+            bool notswap=solveMemo(s1.substr(0,l),s2.substr(0,l),mp) && solveMemo(s1.substr(l,n-l),s2.substr(l,n-l),mp);
+             bool res= swap || notswap;
             mp[key]=res;
             if(res){
                 return true;
