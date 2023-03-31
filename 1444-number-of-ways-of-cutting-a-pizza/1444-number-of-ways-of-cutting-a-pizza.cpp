@@ -35,7 +35,7 @@ public:
         return dp[sh][sv][k] = ans % mod;
     }
     int ways(vector<string>& pizza, int k) {
-        // ios_base::sync_with_stdio(0);
+        
         int n = pizza.size(),m = pizza[0].size();
         vector<vector<vector<ll>>>dp(n,vector<vector<ll>>(m,vector<ll>(k,-1)));
         return cuts(0,n-1,0,m-1,pizza,k-1,dp);
