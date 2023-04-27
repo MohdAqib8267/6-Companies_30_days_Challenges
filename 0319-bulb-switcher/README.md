@@ -1,4 +1,4 @@
-<h2><a href="https://leetcode.com/problems/bulb-switcher/">319. Bulb Switcher</a></h2><h3>Medium</h3><hr><div><p>There are <code>n</code> bulbs that are initially off. You first turn on all the bulbs, then&nbsp;you turn off every second bulb.</p>
+<h2><a href="https://leetcode.com/problems/bulb-switcher/solution/">319. Bulb Switcher</a></h2><h3>Medium</h3><hr><div><p>There are <code>n</code> bulbs that are initially off. You first turn on all the bulbs, then&nbsp;you turn off every second bulb.</p>
 
 <p>On the third round, you toggle every third bulb (turning on if it's off or turning off if it's on). For the <code>i<sup>th</sup></code> round, you toggle every <code>i</code> bulb. For the <code>n<sup>th</sup></code> round, you only toggle the last bulb.</p>
 
