@@ -24,8 +24,12 @@ public:
     }
     
     int getRandom() {
-        int r= rand()%s.size();
-        return *next(s.begin(),r);
+        auto iter = s.begin();
+        int x = rand() % s.size();
+        while(x--)
+            iter++;
+        return *iter;
+        
     }
 };
 
