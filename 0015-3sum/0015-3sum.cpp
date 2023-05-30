@@ -16,7 +16,7 @@ public:
                 if (sum == 0)
                 {
                     ans = {nums[i], nums[lo], nums[hi]};
-                    sort(ans.begin(),ans.end());
+                    // sort(ans.begin(),ans.end());
                     s.insert(ans);
                     lo++;
                     hi--;
