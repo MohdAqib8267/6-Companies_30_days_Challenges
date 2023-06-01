@@ -15,9 +15,11 @@ public:
         bool down=solve(i+1,j,m,n,board,word,vis,ind+1);
             if(left or right or up or down){
                 return true;
-            } vis[i][j]=false;
-        return false;
+            }
+        //     } vis[i][j]=false;
+        // return false;
         }
+        vis[i][j]=false;
        return false;
         
     }
