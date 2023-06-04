@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int ans=0;
+   int ans=0;
     unordered_map<char,int>mp;
     void solve(int st,vector<string>& arr){
         int res=0;
