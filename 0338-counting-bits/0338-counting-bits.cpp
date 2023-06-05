@@ -10,7 +10,7 @@ public:
         if(n==1){
              return ans;
         }
-        // else{
+        
             for(int i=2;i<=n;i++){
                 if(i%2==0){
                     //even number doesn't brings new 1
@@ -21,7 +21,7 @@ public:
                     ans.push_back(ans[i/2]+1);
                 }
             }
-        // }
+        
         return ans;
     }
 };
