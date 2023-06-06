@@ -1,7 +1,6 @@
 class Solution {
 public:
-       
-bool helper(int i,string s,set<string>& wordDict,vector<int>& dp){
+    bool helper(int i,string s,set<string>& wordDict,vector<int>& dp){
     string temp;
     if(i>=s.size()){
         return 1;
