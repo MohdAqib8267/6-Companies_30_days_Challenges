@@ -2,7 +2,7 @@ class Solution {
 public:
    
     int maxProduct(vector<int>& arr) {
-//         int n=arr.size();
+        int n=arr.size();
 //         int minVal = arr[0];
 //     int maxVal = arr[0];
 
@@ -28,19 +28,20 @@ public:
 //     // Return maximum product found in array.
 //     return maxProduct;
         
-        int n=arr.size();
-        int minVal=arr[0];
-        int maxVal=arr[0];
-        int maxProduct = arr[0];
-        for(int i=1;i<n;i++){
-            if(arr[i]<0){
-                swap(maxVal,minVal);
-            }
-            maxVal=max(arr[i],maxVal*arr[i]);
-            minVal=min(arr[i],minVal*arr[i]);
-            
-            maxProduct=max(maxProduct,maxVal);
+        //second method like kadane algo
+        int prod = 1; int maxi = arr[0];
+        for(int i = 0; i < arr.size(); i++){
+            prod = prod*arr[i];
+            maxi = max(prod, maxi);
+            if(prod == 0) prod = 1;
         }
-        return maxProduct;
+        prod = 1;
+        for(int i = arr.size()-1; i >= 0; i--){
+            prod = prod*arr[i];
+            maxi = max(prod, maxi);
+            if(prod == 0) prod = 1;
+        }
+        return maxi;
+
     }
 };
