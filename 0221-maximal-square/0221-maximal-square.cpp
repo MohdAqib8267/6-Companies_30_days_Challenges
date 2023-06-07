@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //similar to count square matrices with all once
     int maximalSquare(vector<vector<char>>& matrix) {
         int m=matrix.size();
         int n=matrix[0].size();
