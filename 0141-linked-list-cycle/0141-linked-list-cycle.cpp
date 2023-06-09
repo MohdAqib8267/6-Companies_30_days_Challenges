@@ -12,15 +12,15 @@ public:
         if(head==NULL){
             return false;
         }
-        ListNode* slow=head;
-        ListNode* fast=head;
+        ListNode* s=head;
+        ListNode* f=head;
         do{
-            if(fast==NULL or fast->next==NULL){
+            if(f==NULL or f->next==NULL){
                 return false;
             }
-            slow=slow->next;
-            fast=fast->next->next;
-        }while(slow!=fast);
+            s=s->next;
+            f=f->next->next;
+        }while(s!=f);
         return true;
     }
 };
