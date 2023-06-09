@@ -21,9 +21,8 @@ public:
                 break;
             }
         }
-        
         if(fast==NULL or fast->next==NULL){
-            return NULL;
+            return nullptr;
         }
         if(slow==head){
             return head;
@@ -33,6 +32,7 @@ public:
             slow=slow->next;
             fast=fast->next;
         }
-        return fast->next;
+        return slow->next;
+        
     }
 };
