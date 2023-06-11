@@ -16,17 +16,16 @@ public:
     }
     
     int get(int index, int snap_id) {
-        auto it = mp[index].lower_bound(snap_id+1);
-        
-        int v=0;
-        
-        if(it!=mp[index].begin())
-        {
-            it--;
-            v = it->second;
-        }
-        
-        return v;
+        int v = 0;
+
+for (const auto& entry : mp[index]) {
+    if (entry.first > snap_id) {
+        break;
+    }
+    v = entry.second;
+}
+
+return v;
     }
 };
 
