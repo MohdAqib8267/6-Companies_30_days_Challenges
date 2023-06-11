@@ -12,7 +12,7 @@ public:
             if((mid==n-1 || nums[mid]>nums[mid+1]) and ( mid==0|| nums[mid]>nums[mid-1])){
                 return mid;
             }
-             if(mid==0 || nums[mid-1]<nums[mid]){
+           if(mid==0 || nums[mid-1]<nums[mid]){
                 low=mid+1;
             }
             else{
