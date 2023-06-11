@@ -23,8 +23,14 @@ public:
         for(int i = 0; i < order.length(); i++){
             m[order[i]] = i;
         }
-        vector<string> temp = words;
-        sort(temp.begin(), temp.end(), cmp);
-        return temp == words;
+        // vector<string> temp = words;
+        // sort(temp.begin(), temp.end(), cmp);
+        // return temp == words;
+        for(int i=0;i<words.size()-1;i++){
+            if(cmp(words[i],words[i+1])==false){
+                return false;
+            }
+        }
+        return true;
     }
 };
