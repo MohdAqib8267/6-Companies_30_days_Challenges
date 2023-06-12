@@ -1,37 +1,36 @@
 class LRUCache {
-public: 
-        int size;
-        list<pair<int,int>>myList;
-        unordered_map<int,list<pair<int,int>>::iterator>myMap;
+public:
+    unordered_map<int,list<pair<int,int>>::iterator>mp;
+    list<pair<int,int>>li;
+    int size;
     LRUCache(int capacity) {
-       size=capacity;
+        size=capacity;
     }
     
     int get(int key) {
-        if(myMap.find(key)==myMap.end()){
+        if(mp.find(key) == mp.end()){
             return -1;
         }
-        myList.splice(myList.begin(),myList,myMap[key]);
-        return myMap[key]->second;
-        
+        li.splice(li.begin(),li,mp[key]);
+        //li ke ander(li ke start me, from li se, mp[key] ko daal do(replace))
+        return mp[key]->second;
     }
     
     void put(int key, int value) {
-        if(myMap.find(key)!=myMap.end()){
-            //if key is present then update
+        if(mp.find(key) != mp.end()){
+            //if key is present then update the value of key
             //it's used, so push in front of list and update map value
-            myMap[key]->second=value;
-            myList.splice(myList.begin(),myList,myMap[key]);
+            mp[key]->second=value;
+            li.splice(li.begin(),li,mp[key]);
             return;
         }
-        if(myList.size()==size){
-            //remove recently least used which will be last pair of myList
-            pair<int,int>temp=myList.back();
-            myList.pop_back();
-            myMap.erase(temp.first);
+        if(li.size() == size){
+            pair<int,int>temp = li.back();
+            li.pop_back();
+            mp.erase(temp.first);
         }
-        myList.push_front({key,value});
-        myMap[key]=myList.begin();
+        li.push_front({key,value});
+        mp[key]=li.begin();
     }
 };
 
