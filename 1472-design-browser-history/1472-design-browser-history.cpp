@@ -1,35 +1,31 @@
 class BrowserHistory {
 public:
-    stack<string>fd;
-    stack<string>bc;
+    stack<string>fd,bd;
     BrowserHistory(string homepage) {
         fd.push(homepage);
     }
     
     void visit(string url) {
         fd.push(url);
-        while(!bc.empty()){
-            bc.pop();
+        while(!bd.empty()){
+            bd.pop();
         }
         return;
     }
     
     string back(int steps) {
         while(fd.size()>1 and steps--){
-            string curr_url = fd.top();
+            bd.push(fd.top());
             fd.pop();
-            bc.push(curr_url);
         }
-        return  fd.top();
         
+        return fd.top();
     }
     
     string forward(int steps) {
-        
-        while(!bc.empty() and steps--){
-            string url = bc.top();
-            bc.pop();
-            fd.push(url);
+        while(!bd.empty() and steps--){
+            fd.push(bd.top());
+            bd.pop();
         }
         return fd.top();
     }
