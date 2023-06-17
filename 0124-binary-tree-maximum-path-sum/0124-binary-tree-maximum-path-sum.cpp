@@ -13,7 +13,7 @@ class Solution {
 public:
     int solve(TreeNode* root,int &maxSum){
         if(root==NULL) return 0;
-        int left = max(0,solve(root->left,maxSum));
+        int left = max(0,solve(root->left,maxSum)); // why left and right maximise --DRY RUN[2,-1]
         int right = max(0,solve(root->right,maxSum));
         maxSum = max(maxSum,left+right+root->val); // path sum including child
          return root->val+max(left,right); //return maximum left and right subtrees including current root
