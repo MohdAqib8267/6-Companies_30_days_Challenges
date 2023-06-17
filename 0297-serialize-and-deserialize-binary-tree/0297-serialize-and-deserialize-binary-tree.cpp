@@ -52,21 +52,22 @@ public:
   
     TreeNode* deserialize(string data) {
      
- queue<string> q;
-    string val;
+        queue<string> q;
+        string val;
 
-    for (int i = 0; i < data.size(); i++) {
-        if (data[i] == ',') continue;
-        string nodeVal;
-        while (i < data.size() && data[i] != ',') {
-            nodeVal += data[i];
-            i++;
+        for (int i = 0; i < data.size(); i++) {
+            if (data[i] == ',') continue;
+            string nodeVal;
+            
+            while (i < data.size() && data[i] != ',') {
+                nodeVal += data[i];
+                i++;
+            }
+            q.push(nodeVal);
         }
-        q.push(nodeVal);
-    }
 
-    TreeNode* root = deserializeHelper(q);
-    return root;
+        TreeNode* root = deserializeHelper(q);
+        return root;
     }
 };
 
