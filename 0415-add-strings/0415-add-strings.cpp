@@ -31,7 +31,7 @@ public:
         int t=carry+(a[i]-'0');
         if(t>=10)
         {
-            int carry=t/10;
+             carry=t/10;
             tmp.push_back(t%10);
         }
         else
