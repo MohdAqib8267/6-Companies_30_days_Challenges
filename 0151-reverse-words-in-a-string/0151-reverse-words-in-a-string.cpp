@@ -1,29 +1,43 @@
 class Solution {
 public:
     string reverseWords(string s) {
-        int n=s.size();
         int i=0;
-        string ans="";
+        int n=s.size();
+        while(i<n and s[i]==' '){
+            i++;
+        }
+        string temp;
+        string ans;
         while(i<n){
-            while(i<n and s[i]==' '){ // it may contain leading multiple spaces
-                i++;
-            }
-             if(i>=n){
-                break;
-            }
-            int j=i+1;
-            while(j<n and s[j]!=' '){
-                j++;
-            }
-            string str=s.substr(i,j-i);
-            if(ans.size()==0){
-                ans=ans+str;
+            if(s[i]==' '){
+                while(s[i]==' '){
+                    i++;
+                }
+                if(i>=n){
+                    break;
+                }
+                i--;
+                if(ans.size()==0){
+                    ans=ans+temp;
+                }
+                else{
+                    ans=temp+' '+ans;
+                }
+                
+                temp="";
+                
             }
             else{
-                ans=str+' '+ans;
+                temp.push_back(s[i]);
             }
-            i=j+1;
+            i++;
         }
+        if(temp.size()==n){
+            ans=temp;
+        }else
+        ans=temp+' '+ans;
+      
+        
         return ans;
     }
 };
