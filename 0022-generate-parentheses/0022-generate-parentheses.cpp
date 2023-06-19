@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void solve(string s,int open,int close,int n,vector<string>&ans){
+    void solve(string s,int open,int close,vector<string>& ans,int n){
         if(open==n and close==n){
             ans.push_back(s);
             return;
@@ -9,18 +9,17 @@ public:
             return;
         }
         if(open>close){
-            solve(s+")",open,close+1,n,ans);
+            solve(s+')',open,close+1,ans,n);
         }
         
-            solve(s+"(",open+1,close,n,ans);
+            solve(s+'(',open+1,close,ans,n);
         
     }
     vector<string> generateParenthesis(int n) {
         string s="";
-        int open=0;
-        int close=0;
         vector<string>ans;
-        solve(s,open,close,n,ans);
+        int open=0, close=0;
+        solve(s,open,close,ans,n);
         return ans;
     }
 };
