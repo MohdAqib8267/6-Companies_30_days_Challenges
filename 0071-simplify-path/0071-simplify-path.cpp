@@ -2,15 +2,15 @@ class Solution {
 public:
     string simplifyPath(string path) {
         int n=path.size();
-        string res="";
         stack<string>st;
+        string s;
         for(int i=0;i<n;i++){
             if(path[i]=='/'){
                 continue;
             }
-            string temp="";
-            while(i<path.size() and path[i]!='/'){
-                temp=temp+path[i];
+            string temp;
+            while(i<n and path[i]!='/'){
+                temp+=path[i];
                 i++;
             }
             if(temp=="."){
@@ -24,15 +24,14 @@ public:
             else{
                 st.push(temp);
             }
-            
         }
         if(st.empty()){
             return "/";
         }
         while(!st.empty()){
-            res="/"+st.top()+res;
+            s="/"+st.top()+s;
             st.pop();
         }
-        return res;
+        return s;
     }
 };
