@@ -6,16 +6,20 @@ public:
         while(i<n and s[i]==' '){
             i++;
         }
+        int j=n-1;
+        while(j>=0 and s[j]==' '){
+            j--;
+        }
         string temp;
         string ans;
-        while(i<n){
+        while(i<=j){
             if(s[i]==' '){
                 while(s[i]==' '){
                     i++;
                 }
-                if(i>=n){
-                    break;
-                }
+                // if(i>=n){
+                //     break;
+                // }
                 i--;
                 if(ans.size()==0){
                     ans=ans+temp;
