@@ -1,32 +1,30 @@
 class Solution {
 public:
     string longestPalindrome(string s) {
-       int st=0;
-        int lo,hi;
         int n=s.size();
-        if(n<2){
-            return s.substr(0,n);
+        int st=0;
+        if(n==1){
+            return s;
         }
-        int size=1;
+        int ans=1;
         for(int i=0;i<n;i++){
-            lo=i-1;
-            hi=i+1;
-            while(lo>=0 and s[i]==s[lo]){
-                lo--;
+            int j=i-1;
+            int k=i+1;
+            while(j>=0 and s[i]==s[j]){
+                j--;
             }
-            while(hi<n and s[i]==s[hi]){
-                hi++;
+            while(k<n and s[i]==s[k]){
+                k++;
             }
-            while(lo>=0 and hi<n and s[lo]==s[hi]){
-                lo--;
-                hi++;
+            while(j>=0 and k<n and s[j]==s[k]){
+                j--;
+                k++;
             }
-           int length=hi-lo-1;
-            if(length>size){
-                size=length;
-                st=lo+1;
+            if(ans<(k-j-1)){
+                ans=k-j-1;
+                st=j+1;
             }
         }
-        return s.substr(st,size);
+        return s.substr(st,ans);
     }
 };
