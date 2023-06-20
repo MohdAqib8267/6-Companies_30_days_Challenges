@@ -1,7 +1,7 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        int n=s.size();
+       int n=s.size();
         int m=t.size();
         unordered_map<char,int>freq1;
         unordered_map<char,int>freq2;
