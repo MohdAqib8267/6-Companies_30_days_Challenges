@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<int>parant,size;
+       vector<int>parant,size;
     int find_set(int v){
         if(v==parant[v]){
             return v;
