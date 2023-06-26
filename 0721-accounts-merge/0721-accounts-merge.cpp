@@ -28,7 +28,7 @@ public:
         int n=accounts.size();
         parant.resize(n+1);
         size.resize(n+1);
-        for(int i=0;i<=n;i++){
+        for(int i=0;i<n;i++){
             parant[i]=i;
             size[i]=1;
         }
