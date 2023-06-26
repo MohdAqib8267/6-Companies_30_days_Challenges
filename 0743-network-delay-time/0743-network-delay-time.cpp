@@ -37,7 +37,7 @@ public:
         
         int res=INT_MIN;
         for(int i=1; i<=n; ++i){
-            if(i!=k and dist[i]==INT_MAX){
+            if( dist[i]==INT_MAX){
                 return -1;
             }
             res=max(res,dist[i]);
