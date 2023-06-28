@@ -1,21 +1,19 @@
 class Solution {
 public:
-    int DFS(int headId,vector<int>adj[],vector<int>& informTime){
+    int dfs(int src,vector<int>adj[],vector<int>& manager,vector<int>& informTime,int n){
         int ans=0;
-        for(auto it:adj[headId]){
-            ans=max(ans,DFS(it,adj,informTime));
+        for(auto it:adj[src]){
+            ans=max(ans,dfs(it,adj,manager,informTime,n));
         }
-        ans=ans+informTime[headId];
+        ans=ans+informTime[src];
         return ans;
     }
     int numOfMinutes(int n, int headID, vector<int>& manager, vector<int>& informTime) {
-        vector<int>adj[n];
+       vector<int>adj[n];
         for(int i=0;i<n;i++){
             if(manager[i]!=-1)
             adj[manager[i]].push_back(i);
         }
-        
-        return DFS(headID,adj,informTime);
-        
+        return dfs(headID,adj,manager,informTime,n);
     }
 };
