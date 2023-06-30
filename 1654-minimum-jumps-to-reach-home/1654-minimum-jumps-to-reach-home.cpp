@@ -1,37 +1,39 @@
 class Solution {
 public:
     int minimumJumps(vector<int>& forbidden, int a, int b, int x) {
-        queue<pair<int, pair<int, bool>>> q; // {node, isBackward}
-        q.push({0, {0, false}});
+     unordered_set<int> visited(forbidden.begin(), forbidden.end());
+        
+        queue<pair<int, bool>> que; 
+        que.push({0, true});
 
-        set<int> s{forbidden.begin(), forbidden.end()};
-        vector<int> vis(6000,0);
-        vis[0] = 1;
-
-        int ans = 0;
-        while(!q.empty()) {
-            auto p = q.front();
-            q.pop();
-
-            int steps = p.first, val = p.second.first, back = p.second.second;
-
-            if(val == x) return steps;
-
-            if(!back) {
-                int next_pos = val - b;
-                if(next_pos >= 0 and !vis[next_pos] and !s.count(next_pos)) {
-                    q.push({steps + 1, {next_pos, true}});
-                    vis[next_pos] = 1;
+        int count = -1;
+        while (!que.empty()) {
+            count++;
+            int length = que.size();
+            for(int i = 0; i < length; i++){
+                auto [current, forward] = que.front(); 
+                que.pop();
+            
+                if (visited.find(current) != visited.end()) {
+                    continue;
                 }
-            }
 
-            int next_pos = val + a;
-            if(next_pos < 6000 and !vis[next_pos] and !s.count(next_pos)) {
-                q.push({steps + 1, {next_pos, false}});
-                vis[next_pos] = 1;
+                if (current == x) {
+                    return count;
+                }
+
+                // try going back if possible
+                if (forward and 0 <= current - b) {
+                    que.push({current - b, false});
+                }
+                // try going forward if possible
+                if (current - b <= 2000) {
+                    que.push({current + a, true});
+                }
+
+                visited.insert(current);
             }
         }
-        
-        return -1;
+         return -1;
     }
 };
