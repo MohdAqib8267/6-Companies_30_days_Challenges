@@ -8,7 +8,7 @@ public:
 
         int count = 0;
         while (!que.empty()) {
-            count++;
+           
             int length = que.size();
             for(int i = 0; i < length; i++){
                 auto [current, back] = que.front(); 
@@ -19,7 +19,7 @@ public:
                 }
 
                 if (current == x) {
-                    return count-1;
+                    return count;
                 }
 
                 // try going back if possible
@@ -33,6 +33,7 @@ public:
 
                 visited.insert(current);
             }
+            count++;
         }
          return -1;
     }
