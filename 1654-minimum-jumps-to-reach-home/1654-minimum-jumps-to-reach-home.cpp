@@ -6,12 +6,12 @@ public:
         queue<pair<int, bool>> que; 
         que.push({0, true});
 
-        int count = -1;
+        int count = 0;
         while (!que.empty()) {
             count++;
             int length = que.size();
             for(int i = 0; i < length; i++){
-                auto [current, forward] = que.front(); 
+                auto [current, back] = que.front(); 
                 que.pop();
             
                 if (visited.find(current) != visited.end()) {
@@ -19,11 +19,11 @@ public:
                 }
 
                 if (current == x) {
-                    return count;
+                    return count-1;
                 }
 
                 // try going back if possible
-                if (forward and 0 <= current - b) {
+                if (back and 0 <= current - b) {
                     que.push({current - b, false});
                 }
                 // try going forward if possible
