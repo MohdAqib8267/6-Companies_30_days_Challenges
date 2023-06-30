@@ -27,7 +27,7 @@ public:
                     que.push({current - b, false});
                 }
                 // try going forward if possible
-                if (current - b <= 2000) {
+                if (current +a <= 6000) {
                     que.push({current + a, true});
                 }
 
