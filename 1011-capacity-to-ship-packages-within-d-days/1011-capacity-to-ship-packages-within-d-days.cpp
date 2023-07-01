@@ -1,48 +1,38 @@
 class Solution {
 public:
-    //correct
-    // bool isPossible(vector<int>&weights,int mid,int days){
-    //     int sum=0;
-    //     int count=1;
-    //     for(int i=0;i<weights.size();i++){
-    //         sum=sum+weights[i];
-    //         if(sum>mid){
-    //             count++;
-    //             sum=weights[i];
-    //             // if(sum>mid){
-    //             //     return false;
-    //             // }
-    //         }
-    //         if(count>days){
-    //             return false;
-    //         }
-    //     }
-    //     return true;
-    // }
     int shipWithinDays(vector<int>& weights, int days) {
-        int n = weights.size();
-        //optimize search bounds
-        int l=0,r=0,ans;
-        for(int x:weights){
-            l=max(l,x),r+=x;
+        int n=weights.size();
+        int lo=0;
+        int hi=0;
+        for(int i=0;i<n;i++){
+            lo=max(lo,weights[i]);
+            hi+=weights[i];
         }
-        ans =r;
-        while(l<r){
-            //can I ship all stuff in time if the capcity is "mid"?
-            int mid = (l+r)/2,d=1,cur = 0;
-            for(int i = 0;i<n;i++){
-                if(cur+weights[i]<=mid)cur+=weights[i];
-                else {
-                    d++;
-                    cur = weights[i];
+        int ans=-1;
+        while(lo<=hi){
+            int mid=(lo+hi)/2;
+            int curr=0;
+            int cnt=1;
+            for(int i=0;i<n;i++){
+                curr+=weights[i];
+                if(curr>mid){
+                    curr=weights[i];
+                    cnt++;
+                    if(curr>mid){
+                        
+                        lo=mid+1;
+                        continue;
+                    }
                 }
             }
-            if(d<=days){
-                ans = mid;
-                r = mid;
+            if(cnt<=days){
+                ans=mid;
+                hi=mid-1;
             }
-            else l = mid+1;
-        }
+            else{
+                lo=mid+1;
+            }
+         }
         return ans;
     }
 };
