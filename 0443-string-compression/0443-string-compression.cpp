@@ -13,6 +13,8 @@ public:
             int cnt=j-i;
             if(cnt>1){
                 string len=to_string(cnt);
+                
+                //yeah islye kya kyu ki hame 1 2 alag hona agar 12 answer aaay toh 
                 for(auto ch:len){
                     chars[ind++]=ch;
                 }
