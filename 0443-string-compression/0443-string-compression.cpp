@@ -1,39 +1,38 @@
 class Solution {
 public:
     int compress(vector<char>& chars) {
-        string s="";
-        
-        int cnt=1;
-        for(int i=0;i<chars.size();i++){
-            
-            if(s==""){
-                s=s+chars[i];
+       int i=0;
+        int ansIndex =0;
+        while(i<chars.size())
+        {
+            int j=i+1;
+            while(j<chars.size() && chars[i]==chars[j])
+            {
+                j++;
             }
-            else{
-                if(chars[i]==s[s.size()-1]){
-                    cnt++;
-                }
-                else{
-                    if(cnt>1){
-                       s=s+to_string(cnt); 
-                    }
-                    
-                    s=s+chars[i];
-                    
-                    cnt=1;
+           // hum yaaha per ansIndex++ islye kar re kyu ki har value k sath yeah apane aap badheeeee
+            chars[ansIndex++]=chars[i];
+
+            int count = j-i;
+
+            if(count>1)
+            { 
+                
+                
+                 //yeah islye kya kyu ki hame 1 2 alag hona agar 12 answer aaay toh 
+
+
+                string cnt= to_string(count);
+                for(char ch: cnt)
+                {
+                    chars[ansIndex++]=ch;
                 }
             }
+
+            //agar hum soche toh jo j ki location hogi vhoi h next char ki location hogee 
+            i=j;
         }
-        if(cnt>1){
-            s=s+to_string(cnt);
-        }
-        cout<<s;
-        
-        int j;
-        for( j=0;j<s.size();j++){
-            
-               chars[j]=s[j];
-        }
-        return s.size();
+             //hume bola gaay tha ki humee size return karni hai aur ...int function diya hua hai
+        return ansIndex;
     }
 };
