@@ -70,6 +70,52 @@ public:
         }
         return dp[n][m];
     }
+    
+    //space optimisation
+      bool solveOptimise(string &s, string &p){
+         int n=s.size();
+        int m=p.size();
+        // vector<vector<int>>dp(n+1,vector<int>(m+1,0));
+          vector<int>prev(m+1,0);
+          vector<int>curr(m+1,0);
+        
+        //1st base case
+        prev[0]=true;
+        //2nd base case
+        //all rows and 1st col
+        //set false--> it is already false, bcz dp initialize with 0
+        
+        //3rd base case
+        //1st row and all columns
+        for(int j=1;j<=p.size();j++){
+            bool flag=true;
+            for(int k=1;k<=j;k++){
+                if(p[k-1]!='*'){
+                    flag=false;
+                    break;
+                }
+            }
+            prev[j]=flag;
+        }
+        
+        //match
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                if(s[i-1]==p[j-1] || p[j-1]=='?'){
+                     curr[j]=prev[j-1];
+                }
+                else if(p[j-1]=='*'){
+                   curr[j]=prev[j] || curr[j-1];
+                }
+                else{
+                  curr[j]= false;
+                }
+            }
+            //after each iteration
+            prev=curr;
+        }
+        return prev[m];
+    }
     bool isMatch(string s, string p) {
         int n=s.size();
         int m=p.size();
@@ -78,6 +124,9 @@ public:
         // return solve(s,p,n,m,dp);
         
         //solve using tabulation(0-->n && 0-->m)
-        return solveTab(s, p);
+        // return solveTab(s, p);
+        
+         //solve space Optimazion with tabulation(0-->n && 0-->m)
+        return solveOptimise(s, p);
     }
 };
