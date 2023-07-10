@@ -16,9 +16,29 @@ public:
         }
         return dp[i]=ans;
     }
+int solveTab(vector<int>& arr){
+    int n=arr.size();
+      vector<int> dp(n, INT_MAX);
+
+    dp[n - 1] = 0;
+
+    for (int i = n - 2; i >= 0; i--)
+    {
+        for (int j = i + 1; j <= min(n - 1, i + arr[i]); j++)
+        {
+            if (dp[j] != INT_MAX)
+            {
+                dp[i] = min(dp[i], 1 + dp[j]);
+            }
+        }
+    }
+    return dp[0];
+
+}
     int jump(vector<int>& nums) {
-        int n=nums.size();
-        vector<int>dp(n+1,-1);
-        return solve(0,n,nums,dp);
+        // int n=nums.size();
+        // vector<int>dp(n+1,-1);
+        // return solve(0,n,nums,dp);
+        return solveTab(nums);
     }
 };
