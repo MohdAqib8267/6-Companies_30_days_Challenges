@@ -51,11 +51,31 @@ int solveTab(vector<int>& arr){
     }
     return dp[i]=ans;
 }
+    //Greedy Approach
+    int greedy(vector<int>& nums){
+    int n=nums.size();
+    if(n==1){
+        return 0;
+    }
+    int maxi=nums[0];
+    int curr=maxi;
+    int ans=1;
+    for(int i=1;i<n-1;i++){
+        maxi=max(maxi,i+nums[i]);
+        if(i==curr){
+            ans++;
+            curr=maxi;
+        }
+    }
+    return ans;
+}
     int jump(vector<int>& nums) {
         int n=nums.size();
         vector<int>dp(n+1,-1);
         // return solve(0,n,nums,dp);
         // return solveTab(nums);
-        return solve(0,nums,n,dp);
+        // return solve(0,nums,n,dp);
+        
+        return greedy(nums);
     }
 };
