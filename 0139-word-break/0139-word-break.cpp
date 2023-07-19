@@ -16,9 +16,29 @@ public:
         }
         return dp[i]=false;
     }
-    bool wordBreak(string s, vector<string>& wordDict) {
+    bool solveTab(string s, vector<string>& wordDict){
         set<string>st(wordDict.begin(),wordDict.end());
-        vector<int>dp(s.size()+1,-1);
-        return solve(0,s,st,dp);
+        int n=s.size();
+        vector<int>dp(n+1,0);
+        dp[n]=1;
+        for(int i=n-1;i>=0;i--){
+            for(int j=i;j>=0;j--){
+                if(st.find(s.substr(j,i-j+1))!=st.end()){
+                    if(dp[i+1]){
+                        dp[j]=true;
+                        // i=j;
+                        // break;
+                    }
+                }
+            }
+        }
+        return dp[0];
+    }
+    bool wordBreak(string s, vector<string>& wordDict) {
+        // set<string>st(wordDict.begin(),wordDict.end());
+        // vector<int>dp(s.size()+1,-1);
+        // return solve(0,s,st,dp);
+        
+        return solveTab(s,wordDict);
     }
 };
