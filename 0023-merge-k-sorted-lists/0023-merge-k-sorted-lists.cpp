@@ -10,23 +10,22 @@
  */
 class Solution {
 public:
-    struct compare {
-        bool operator()(ListNode* l1, ListNode* l2) {
-            return l1->val > l2->val;
+    struct cmp{
+        bool operator()(ListNode* l1, ListNode* l2){
+            return l1->val>l2->val;
         }
     };
-    
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        priority_queue<ListNode*, vector<ListNode*>, compare> pq;
-        
-        // Initialize priority queue
-        for(ListNode* list: lists) {
+        if(lists.size()==0){
+            return NULL;
+        }
+        priority_queue<ListNode*,vector<ListNode*>,cmp>pq;
+        for(auto list:lists){
             if(list) {
                 pq.push(list);
             }
         }
-        
-        ListNode* dummy = new ListNode(-1); // dummy node to get the head of merged lists
+       ListNode* dummy = new ListNode(-1); // dummy node to get the head of merged lists
         ListNode* curr = dummy;
         
         while(!pq.empty()) {
