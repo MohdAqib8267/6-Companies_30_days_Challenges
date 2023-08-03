@@ -9,7 +9,7 @@
  */
 class Codec {
 public:
-    void preorder(TreeNode* root,string &data){
+     void preorder(TreeNode* root,string &data){
          if (root == nullptr) {
         data += "X,";
         return;
