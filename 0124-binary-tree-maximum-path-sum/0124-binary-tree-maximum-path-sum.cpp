@@ -11,12 +11,14 @@
  */
 class Solution {
 public:
-    int solve(TreeNode* root,int &maxSum){
-        if(root==NULL) return 0;
-        int left = max(0,solve(root->left,maxSum)); // why left and right maximise --DRY RUN[2,-1]
-        int right = max(0,solve(root->right,maxSum));
-        maxSum = max(maxSum,left+right+root->val); // path sum including child
-         return root->val+max(left,right); //return maximum left and right subtrees including current root
+    int solve(TreeNode* root,int &sum){
+        if(root==NULL){
+            return 0;
+        }
+       int left=max(0,solve(root->left,sum));
+       int right=max(0,solve(root->right,sum));
+        sum=max(sum,left+right+root->val);
+        return root->val+max(left,right);
     }
     int maxPathSum(TreeNode* root) {
         int sum=INT_MIN;
