@@ -20,13 +20,7 @@ public:
         }
         pos = len-n;
         node = head;
-        // while(pos--){
-        //     prev = node;
-        //     node = node->next;
-        // }
-        // if(prev==NULL)
-        //     return node->next;
-        // prev->next = node->next;
+        
         if(pos==0){
             return head->next;
         }
