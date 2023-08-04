@@ -21,18 +21,19 @@ public:
 
 class Solution {
 public:
-    void DFS(Node* node,Node* copy,vector<Node*>& vis){
+    void DFS(Node* node,Node* copy,vector<Node*>&vis){
         vis[copy->val]=copy;
         for(auto it:node->neighbors){
             if(!vis[it->val]){
-                Node* newNode = new Node(it->val);
+                Node* newNode=new Node(it->val);
                 (copy->neighbors).push_back(newNode);
                 DFS(it,newNode,vis);
-            }
-            else{
+            }else{
                 (copy->neighbors).push_back(vis[it->val]);
             }
+            
         }
+      
     }
     Node* cloneGraph(Node* node) {
         if(node == NULL){
