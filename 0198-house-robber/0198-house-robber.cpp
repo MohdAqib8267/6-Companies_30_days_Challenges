@@ -12,6 +12,9 @@ public:
     int solveTab(vector<int>& nums){
          int n=nums.size();
         vector<int>dp(n+1,0);
+        if(n==1){
+            return nums[0];
+        }
         dp[1]=nums[0];
         if(n>=2){
             dp[2]=max(nums[0],nums[1]);
@@ -24,11 +27,27 @@ public:
         return dp[n];
         
     }
+    int space(vector<int>& nums){
+         int n=nums.size();
+        if(n==1){
+            return nums[0];
+        }
+          int firstHouse=nums[0];
+            int SecondHouse=max(nums[0],nums[1]);
+        for(int i=3;i<=n;i++){
+            int twoback=nums[i-1]+firstHouse;
+            int oneback=SecondHouse;
+            firstHouse=SecondHouse;
+            SecondHouse=max(oneback,twoback);
+        }
+        return SecondHouse;
+    }
     int rob(vector<int>& nums) {
         int n=nums.size();
         // vector<int>dp(n+1,-1);
         // return solve(0,n,nums,dp);
         
-        return solveTab(nums);
+        // return solveTab(nums);
+        return space(nums);
     }
 };
