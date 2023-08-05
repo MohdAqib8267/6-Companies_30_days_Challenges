@@ -1,7 +1,7 @@
 class Solution {
 public:
-    void solve(int i,vector<int>& candidates,int target, vector<int>&temp,vector<vector<int>>& ans){
-        if(i>=candidates.size() || target<0){
+    void solve(int i,vector<int>& candidates,int target,vector<int>temp,vector<vector<int>>&ans){
+         if(i>=candidates.size() || target<0){
             return;
         }
         if(target==0){
@@ -15,9 +15,8 @@ public:
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>>ans;
-        int n=candidates.size();
         vector<int>temp;
-         solve(0,candidates,target,temp,ans);
+        solve(0,candidates,target,temp,ans);
         return ans;
     }
 };
