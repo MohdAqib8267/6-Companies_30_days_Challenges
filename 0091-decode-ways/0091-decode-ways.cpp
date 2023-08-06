@@ -18,10 +18,33 @@ public:
         one=solve(i+1,s,n,dp);
         return dp[i]=one+two;
     }
+    int solveTab(string s){
+        int n=s.size();
+        vector<int>dp(n+1,1);
+        dp[0]=1;
+        dp[1]=1;
+         for (int i = 2; i <= n; i++) {
+        int one = 0, two = 0;
+
+        if (s[i - 1] != '0') {
+            one = dp[i - 1];
+        }
+
+        if (s[i - 2] == '1' || (s[i - 2] == '2' && s[i - 1] <= '6')) {
+            two = dp[i - 2];
+        }
+
+        dp[i] = one + two;
+    }
+        return dp[n];
+    }
     int numDecodings(string s) {
         int n=s.size();
         vector<int>dp(n+1,-1);
-        
-        return solve(0,s,n,dp);
+        if(s[0]=='0'){
+            return 0;
+        }
+        // return solve(0,s,n,dp);
+        return solveTab(s);
     }
 };
