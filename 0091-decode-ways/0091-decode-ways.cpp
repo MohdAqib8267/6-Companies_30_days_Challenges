@@ -1,22 +1,27 @@
 class Solution {
 public:
-     int solve(string s, int index, vector<int>&dp){
-        if(index >= s.size()) return 1;
-        // if(index>s.size()) return 0;
-        if(s[index] == '0') return 0;
-        if(dp[index] != -1) return dp[index];
-        char ch = s[index];
-        int two = 0, one = 0;
-        if((ch == '1' && index+1<s.size()) || (ch == '2' && index+1<s.size() && s[index+1] <'7')) two = solve(s, index+2,dp);
-        one = solve(s, index+1,dp);
-
-        return dp[index] =  two + one;
-
+    int solve(int i,string s,int n,vector<int>&dp){
+        if(i>=n){
+            return 1;
+        }
+        if(s[i]=='0'){
+            return 0;
+        }
+        if(dp[i]!=-1){
+            return dp[i];
+        }
+        int one=0;
+        int two=0;
+        if((s[i]=='1' and i+1<n) || (s[i]=='2' and i+1<n and s[i+1]<'7')){
+            two=solve(i+2,s,n,dp);
+        }
+        one=solve(i+1,s,n,dp);
+        return dp[i]=one+two;
     }
-
     int numDecodings(string s) {
-        vector<int> dp(s.size()+1, -1);
-        if(s[0] == '0') return 0;
-        return solve(s, 0, dp);
+        int n=s.size();
+        vector<int>dp(n+1,-1);
+        
+        return solve(0,s,n,dp);
     }
 };
