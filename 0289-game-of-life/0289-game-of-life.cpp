@@ -1,7 +1,7 @@
 class Solution {
 public:
     void gameOfLife(vector<vector<int>>& board) {
-        int m=board.size();
+         int m=board.size();
         int n=board[0].size();
         vector<vector<int>>copyBoard=board;
         int dx[]={-1,-1,0,1,1,1,0,-1};
