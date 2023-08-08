@@ -1,27 +1,31 @@
 class Solution {
 public:
     int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
-       int i=0;
+        int n=customers.size();
+        int NGS=0;
+        int wSum=0;
+        int maxSum=0;
+        int i=0;
         int j=0;
-        int sumofNotGrumpy=0;
-        int windowSum=0;
-        int maxWindowSum=0;
-        //basically hum window (mintues ki) ka sum nikalte jayenge and 
-        //maximise krenge and sum nikalenge pure din me jhan per grumpy nhi hai ab jo grumpy minutes wali window hogi usme jo not grumpy wala hai jo wo do baar count ho gya hoga isliye use minues krenge yhi dhyaan rkhey
-        while(j<grumpy.size()){
+        while(j<n){
             if(grumpy[j]==0){
-                sumofNotGrumpy += customers[j]; // sum of not grumpies inside and outside the window
+                NGS+=customers[j];
             }
             else{
-                windowSum += customers[j]; // window ke ander grumpy walo ka sum
+                wSum+=customers[j];
             }
-            if(j-i+1 == minutes){
-                maxWindowSum=max(maxWindowSum,windowSum);
-                if(grumpy[i]==1){ windowSum -= customers[i]; }
-                i++;
+                if(j-i+1==minutes){
+                    maxSum=max(maxSum,wSum);
+                    if(grumpy[i]==1){
+                        wSum=wSum-customers[i];
+                    }
+                    
+                    i++;
+                
+               
             }
             j++;
         }
-        return sumofNotGrumpy+maxWindowSum;// sab not grumpies and window ke ander jo grumpy hai unka sum
+        return NGS+maxSum;
     }
 };
