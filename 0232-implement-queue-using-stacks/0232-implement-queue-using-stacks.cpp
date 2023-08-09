@@ -1,6 +1,7 @@
 class MyQueue {
 public:
-    stack<int>st1,st2;
+    stack<int>st1;
+    stack<int>st2;
     MyQueue() {
         
     }
@@ -29,8 +30,7 @@ public:
             st1.pop();
         }
         int el=st1.top();
-       
-        while(!st2.empty()){
+         while(!st2.empty()){
             st1.push(st2.top());
             st2.pop();
         }
