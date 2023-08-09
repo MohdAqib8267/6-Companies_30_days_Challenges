@@ -1,8 +1,8 @@
 class Solution {
 public:
-    int partition(vector<int>& nums,int l,int r){
+    int partition(vector<int>&nums,int l,int r){
+        int pivot=nums[r];
         int i=l-1;
-        int pivot=nums[r]; //pivot ke left me pivot se chote abd right me bdey ho
         for(int j=l;j<=r-1;j++){
             if(nums[j]<=pivot){
                 i++;
@@ -13,11 +13,12 @@ public:
         return i+1;
     }
     int findKthLargest(vector<int>& nums, int k) {
+        //using quick sort algo
         int n=nums.size();
+         k=n-k; //kth smallest element
         int lo=0;
         int hi=n-1;
-        k=n-k; //kth smallest element
-        while(lo<hi){
+        while(lo<=hi){
             int pi=partition(nums,lo,hi);
             if(pi<k){
                 lo=pi+1;
