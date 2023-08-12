@@ -7,7 +7,7 @@ public:
         int cnt=0;
         for(int i=0;i<n;i++){
             sum+=nums[i];
-            if(sum==k) {
+            if(sum==k){
                 cnt++;
             }
             if(mp.find(sum-k)!=mp.end()){
