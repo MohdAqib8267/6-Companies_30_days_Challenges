@@ -1,9 +1,10 @@
 class Solution {
 public:
-    bool isPalind(string str){
-        int i=0;int j=str.size()-1;
-        while(i<j){
-            if(str[i]!=str[j]){
+    bool solve(string s){
+        int i=0;
+        int j=s.size()-1;
+        while(i<=j){
+            if(s[i]!=s[j]){
                 return false;
             }
             i++;
@@ -12,19 +13,24 @@ public:
         return true;
     }
     bool isPalindrome(string s) {
+        int n=s.size();
         string str="";
-        for(int i=0;i<s.size();i++){
-           if(s[i]>='A' and s[i]<='Z'){
+        for(int i=0;i<n;i++){
+            
+            if(s[i]>='A' and s[i]<='Z'){
                 str+=(s[i]+32);
             }
-             if(s[i]>='a' and s[i]<='z'){
+            if(s[i]>='0' and s[i]<='9'){
                 str+=s[i];
             }
-             if(s[i]>='0' and s[i]<='9'){
-                str+=(s[i]);
+            if(s[i]>='a' and s[i]<='z'){
+                str+=s[i];
             }
         }
         cout<<str;
-        return isPalind(str);
+        if(solve(str)){
+            return true;
+        }
+        return false;
     }
 };
