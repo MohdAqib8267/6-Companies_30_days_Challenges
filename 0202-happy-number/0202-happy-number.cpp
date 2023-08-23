@@ -1,33 +1,32 @@
 class Solution {
 public:
-   int digit_sq_sum(int n){
+    int find(int n){
         int sum=0;
         while(n>0){
-            int last_digit=n%10;
-            sum=sum+last_digit*last_digit;
+            int ld=(n%10);
+            sum=sum+(ld*ld);
             n=n/10;
         }
         return sum;
     }
     bool isHappy(int n) {
-        //method 1
-        unordered_map<int,int>mp;
+        if(n==1){
+            return true;
+        }
+        if(n==4){
+            return false;
+        }
+        bool ans=true;
         while(n!=1){
-            if(mp[n]==0){
-                mp[n]++;
-            }
-            else{
-                //cycle form
-                return false;
+            int newNum=find(n);
+            cout<<newNum<<endl;
+            
+            if(newNum==4){
+                ans=false;
                 break;
             }
-            n=digit_sq_sum(n);
+            n=newNum;
         }
-        return true;
-
-        //method 2
-        // if(n==1) return true;
-        // if(n==4) return false;
-        // return isHappy(digit_sq_sum(n));
+        return ans;
     }
 };
