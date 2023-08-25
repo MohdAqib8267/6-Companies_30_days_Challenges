@@ -19,10 +19,9 @@ public:
     
     
     int titleToNumber(string columnTitle) {
-      int n=columnTitle.size();
-        int res=0;
-        for(int i=0;i<n;i++){
-            int d=columnTitle[i]-'A'+1;
+      int res=0;
+        for(int i=0;i<columnTitle.size();i++){
+            int d=(columnTitle[i]-'A'+1);
             res=26*res+d;
         }
         return res;
