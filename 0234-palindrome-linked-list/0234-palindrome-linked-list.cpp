@@ -10,48 +10,90 @@
  */
 class Solution {
 public:
-    ListNode* reverse(ListNode* head){
-        if(head==NULL){
-            return NULL;
-        }
-        ListNode* prev=NULL;
-        ListNode* curr=head;
-        while(curr!=NULL){
-            ListNode* nextptr=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=nextptr;
+   //1. stack me bhar lo and traverse kro list per and stack k top element se compare krte jao
+    
+    //2nd half list reverse
+      ListNode* reverse(ListNode*head)
+    {
+        if(!head)return head;
+        ListNode*prev=NULL,*temp=head;
+        while(temp)
+        {
+            ListNode* curr=temp->next;
+            temp->next=prev;
+            prev=temp;
+            temp=curr;
         }
         return prev;
     }
-    bool isPalindrome(ListNode* head) {
-        int len=0;
-        ListNode* temp=head;
-        while(temp!=NULL){
-            len++;
-            temp=temp->next;
-        }
-        temp=head;
-        int x=len/2;
-        if(len%2==0){
-            while(x--){
-                temp=temp->next;
-            }
-        }
-        else{
-           while(x--){
-                temp=temp->next;
-            }
-            temp=temp->next;
-        }
-        temp=reverse(temp);
-        while(head && temp)
+    
+    bool isPalindrome(ListNode* head) 
+    {
+//         ListNode*temp=head;
+//         int l=0;
+//         while(temp)
+//         {
+//             l++;
+//             temp=temp->next;
+//         }
+//         temp=head;        
+//         int x=l/2;
+//         if(l%2==0)
+//         {            
+//             while(x--){
+//                  temp=temp->next;
+//             }
+           
+//         }       
+//         else
+//         {           
+//             while(x--){
+//                  temp=temp->next;
+//             }
+               
+//             temp=temp->next;
+//         }
+        
+//         temp=reverse(temp);
+        
+//         while(head && temp)
+//         {
+//             if(head->val!=temp->val)
+//                 return false;
+//             head=head->next;
+//             temp=temp->next;
+//         }
+//         return true;
+        int l=0;
+        ListNode*temp=head;
+        while(temp)
         {
-            if(head->val!=temp->val)
-                return false;
-            head=head->next;
+            l++;
             temp=temp->next;
+         }
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast!=NULL and fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        
+        if(l%2==0){
+            temp=reverse(slow); 
+        }else{
+            slow=slow->next;
+            temp=reverse(slow);
+        }
+        ListNode* curr=head;
+        while(temp!=NULL){
+            if(curr->val!=temp->val){
+                return false;
+            }
+            temp=temp->next;
+            curr=curr->next;
         }
         return true;
+       
+        
     }
 };
