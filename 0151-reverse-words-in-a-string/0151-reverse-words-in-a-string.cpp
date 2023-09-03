@@ -3,10 +3,12 @@ public:
     string reverseWords(string s) {
         int i=0;
         int n=s.size();
+        //remove intialy empty space
         while(i<n and s[i]==' '){
             i++;
         }
         int j=n-1;
+        //remove last empty space
         while(j>=0 and s[j]==' '){
             j--;
         }
@@ -17,9 +19,6 @@ public:
                 while(s[i]==' '){
                     i++;
                 }
-                // if(i>=n){
-                //     break;
-                // }
                 i--;
                 if(ans.size()==0){
                     ans=ans+temp;
