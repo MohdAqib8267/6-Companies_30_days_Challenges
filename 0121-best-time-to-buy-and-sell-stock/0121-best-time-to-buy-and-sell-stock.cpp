@@ -26,6 +26,8 @@ public:
             profit=max(profit,prices[i]-minVal);
             minVal=min(minVal,prices[i]);
         }
+       
+        
         return profit;
     }
 };
