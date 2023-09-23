@@ -11,22 +11,28 @@
  */
 class Solution {
 public:
-    void solve(TreeNode* root,int sum,vector<int>& ans){
-        if(root==NULL) return;
-        sum+=root->val;
-        if(root->left==NULL and root->right==NULL){
-            ans.push_back(sum);
+    void solve(TreeNode* root,vector<int>&ans,int sum){
+        if(root==NULL){
             return;
         }
-        solve(root->left,sum,ans);
-        solve(root->right,sum,ans);
+        sum=sum+root->val;
+        if(root->left==NULL and root->right==NULL){
+            ans.push_back(sum);
+        }
+        solve(root->left,ans,sum);
+        solve(root->right,ans,sum);
     }
     bool hasPathSum(TreeNode* root, int targetSum) {
         int sum=0;
+        if(root==NULL){
+            return false;
+        }
         vector<int>ans;
-        solve(root,sum,ans);
+        solve(root,ans,sum);
         for(int i=0;i<ans.size();i++){
-            if(ans[i]==targetSum) return true;
+            if(ans[i]==targetSum){
+                return true;
+            }
         }
         return false;
     }
