@@ -12,20 +12,17 @@ public:
             return -1;
         }
         li.splice(li.begin(),li,mp[key]);
-        //li ke ander(li ke start me, from li se, mp[key] ko daal do(replace))
         return mp[key]->second;
     }
     
     void put(int key, int value) {
-        if(mp.find(key) != mp.end()){
-            //if key is present then update the value of key
-            //it's used, so push in front of list and update map value
+        if(mp.find(key)!=mp.end()){
             mp[key]->second=value;
             li.splice(li.begin(),li,mp[key]);
             return;
         }
-        if(li.size() == size){
-            pair<int,int>temp = li.back();
+        if(li.size()==size){
+             pair<int,int>temp = li.back();
             li.pop_back();
             mp.erase(temp.first);
         }
