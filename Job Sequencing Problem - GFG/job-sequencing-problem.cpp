@@ -56,6 +56,7 @@ class Solution
                     jobCount++;
                     break;
                 }
+                
             }
         }
         return {jobCount, profit};
