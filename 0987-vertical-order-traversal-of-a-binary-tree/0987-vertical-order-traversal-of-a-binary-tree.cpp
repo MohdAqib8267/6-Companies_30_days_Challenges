@@ -12,6 +12,7 @@
 class Solution {
 public:
     map<int,vector<pair<int,int>>>mp;
+   
     static bool cmp(pair<int,int>&a, pair<int,int>&b){
         if(a.second<b.second){
             return true;
