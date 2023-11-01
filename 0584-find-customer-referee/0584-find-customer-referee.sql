@@ -1,3 +1,3 @@
 # Write your MySQL query statement below
-select cust.name as name from Customer as cust
-where (cust.referee_id is null || cust.referee_id!=2);
+select Cust.name as name from Customer as Cust
+where (Cust.referee_id is null || Cust.referee_id != 2)
