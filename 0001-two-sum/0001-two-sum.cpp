@@ -5,11 +5,12 @@ public:
         for(int i=0;i<nums.size();i++){
             if(mp.find(target-nums[i])!=mp.end()){
                 return {mp[target-nums[i]],i};
+            }else{
+               mp[nums[i]]=i; 
             }
-            else{
-                mp[nums[i]]=i;
-            }
+            
         }
         return {};
     }
+    
 };
