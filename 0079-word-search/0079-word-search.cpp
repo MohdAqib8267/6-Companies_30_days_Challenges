@@ -1,33 +1,33 @@
 class Solution {
 public:
-    bool solve(vector<vector<char>>& board,int i,int j,string word,int l,int m,int n,vector<vector<bool>>& vis){
+    bool solve(int i,int j,int l,int m,int n,string &word,vector<vector<char>>&board,vector<vector<int>>&vis){
         if(l>=word.size()){
             return true;
         }
-        if(i<0 || i>=m || j<0 || j>=n || vis[i][j]){
+        if(i<0 || j<0 || i>=m || j>=n || vis[i][j]){
             return false;
         }
-       if(board[i][j]==word[l]){
-           vis[i][j]=true;
-           bool up=solve(board,i-1,j,word,l+1,m,n,vis);
-            bool left=solve(board,i,j-1,word,l+1,m,n,vis);
-            bool down=solve(board,i+1,j,word,l+1,m,n,vis);
-            bool right=solve(board,i,j+1,word,l+1,m,n,vis);
-            if(up or left or down or right){
+        if(board[i][j]==word[l]){
+            vis[i][j]=true;
+            bool left=solve(i,j-1,l+1,m,n,word,board,vis);
+            bool up = solve(i-1,j,l+1,m,n,word,board,vis);
+            bool right = solve(i,j+1,l+1,m,n,word,board,vis);
+            bool down =solve(i+1,j,l+1,m, n,word,board,vis);
+            if(left || up || right || down){
                 return true;
             }
-       }
+        }
         vis[i][j]=false;
-      return false;
+        return false;
     }
     bool exist(vector<vector<char>>& board, string word) {
         int m=board.size();
         int n=board[0].size();
-        vector<vector<bool>>vis(m,vector<bool>(n,0));
+        vector<vector<int>>vis(m,vector<int>(n,0));
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 if(board[i][j]==word[0]){
-                    if(solve(board,i,j,word,0,m,n,vis)){
+                    if(solve(i,j,0,m,n,word,board,vis)){
                         return true;
                     }
                 }
