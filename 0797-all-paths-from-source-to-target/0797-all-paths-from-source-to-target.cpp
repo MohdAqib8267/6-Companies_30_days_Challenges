@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void solve(int st,int en,vector<int>&temp,vector<vector<int>>&ans,vector<int>adj[]){
+    void solve(int st,int en,vector<int>temp,vector<vector<int>>&ans,vector<int>adj[]){
          temp.push_back(st);
             if(st==en){
                 ans.push_back(temp);
@@ -8,7 +8,7 @@ public:
             }
         for(auto it:adj[st]){
             solve(it,en,temp,ans,adj);
-            temp.pop_back();
+            
         }
         
     }
