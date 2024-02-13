@@ -1,9 +1,7 @@
 class Solution {
 public:
-    bool solve(string s){
-        int i=0;
-        int j=s.size()-1;
-        while(i<=j){
+    bool Palindrome(string s,int i,int j){
+        while(i<j){
             if(s[i]!=s[j]){
                 return false;
             }
@@ -16,21 +14,17 @@ public:
         int n=s.size();
         string str="";
         for(int i=0;i<n;i++){
-            
             if(s[i]>='A' and s[i]<='Z'){
                 str+=(s[i]+32);
-            }
-            if(s[i]>='0' and s[i]<='9'){
+            }else if(s[i]>='a' and s[i]<='z'){
                 str+=s[i];
-            }
-            if(s[i]>='a' and s[i]<='z'){
+            }else if(s[i]>='0' and s[i]<='9'){
                 str+=s[i];
+            }else{
+                continue;
             }
         }
         cout<<str;
-        if(solve(str)){
-            return true;
-        }
-        return false;
+        return Palindrome(str,0,str.size()-1);
     }
 };
