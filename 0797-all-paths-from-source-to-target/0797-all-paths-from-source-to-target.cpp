@@ -1,17 +1,18 @@
 class Solution {
 public:
-    void DFS(int src,int n,vector<int>temp,vector<vector<int>>& ans,vector<int>adj[]){
-        temp.push_back(src);
-        if(src==n-1){
-            ans.push_back(temp);
-            return;
+    void solve(int st,int en,vector<int>&temp,vector<vector<int>>&ans,vector<int>adj[]){
+         temp.push_back(st);
+            if(st==en){
+                ans.push_back(temp);
+                return;
+            }
+        for(auto it:adj[st]){
+            solve(it,en,temp,ans,adj);
+            temp.pop_back();
         }
-        for(auto it:adj[src]){
-            DFS(it,n,temp,ans,adj);
-        }
+        
     }
     vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
-        vector<vector<int>>ans;
         int n=graph.size();
         vector<int>adj[n];
         for(int i=0;i<n;i++){
@@ -19,8 +20,12 @@ public:
                 adj[i].push_back(graph[i][j]);
             }
         }
+        //|0-->1,2
+        //|1-->3
+        //|2-->3
+        vector<vector<int>>ans;
         vector<int>temp;
-        DFS(0,n,temp,ans,adj);
+        solve(0,n-1,temp,ans,adj);
         return ans;
     }
 };
