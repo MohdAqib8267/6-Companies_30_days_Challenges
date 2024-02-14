@@ -25,14 +25,25 @@ public:
 //         return ans==10000?false:true;
         
         //Tabulation
-        vector<int>dp(n,10000);
-        dp[0]=0;
-        for(int i=0;i<n;i++){
-            for(int j=i+1;j<=min(n-1,i+nums[i]);j++){
+//         vector<int>dp(n,10000);
+//         dp[0]=0;
+//         for(int i=0;i<n;i++){
+//             for(int j=i+1;j<=min(n-1,i+nums[i]);j++){
                 
-                dp[j]=min(dp[j],1+dp[i]);
+//                 dp[j]=min(dp[j],1+dp[i]);
+//             }
+//         }
+//         return dp[n-1]==10000?false:true;
+        
+        //space optimization
+        int maxJ=0;
+        for(int i=0;i<n;i++){
+            if(i>maxJ){
+                return false;
             }
+            maxJ=max(maxJ,i+nums[i]);
         }
-        return dp[n-1]==10000?false:true;
+        return true;
+        
     }
 };
