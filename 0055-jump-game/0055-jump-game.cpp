@@ -18,9 +18,21 @@ public:
     }
     bool canJump(vector<int>& nums) {
         int n=nums.size();
-        vector<int>dp(n+1,-1);
-        int ans=solve(0,n,nums,dp);
+        //memoization
+//         vector<int>dp(n+1,-1);
+//         int ans=solve(0,n,nums,dp);
         
-        return ans==10000?false:true;
+//         return ans==10000?false:true;
+        
+        //Tabulation
+        vector<int>dp(n,10000);
+        dp[0]=0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<=min(n-1,i+nums[i]);j++){
+                
+                dp[j]=min(dp[j],1+dp[i]);
+            }
+        }
+        return dp[n-1]==10000?false:true;
     }
 };
