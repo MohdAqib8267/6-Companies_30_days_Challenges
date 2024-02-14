@@ -1,35 +1,26 @@
 class Solution {
 public:
-     int solve(int i,vector<int>& nums,int n,vector<int>& dp){
-        if(i>=n-1){
+    int solve(int st,int n,vector<int>&nums,vector<int>&dp){
+        if(st>=n-1){
             return 0;
         }
-        if(dp[i]!=-1){
-            return dp[i];
+        if(dp[st]!=-1){
+            return dp[st];
         }
-        if(nums[i]==0){
+        if(nums[st]==0){
             return 10000;
         }
-        int ans=10000;
-         for(int j=i+1;j<=min(nums[i]+i,n-1);j++){
-        ans=min(ans,1+solve(j,nums,n,dp));
-    }
-        return dp[i]=ans;
+        int step=10000;
+        for(int i=st+1;i<=min(n-1,st+nums[st]);i++){
+            step=min(step,1+solve(i,n,nums,dp));
+        }
+        return dp[st]=step;
     }
     bool canJump(vector<int>& nums) {
-         int n=nums.size();
-        // vector<int>dp(n+1,-1);
-        // // return solve(0,n,nums,dp);
-        // //DP solution
-        // return solve(0,nums,n,dp)==10000?false:true;
+        int n=nums.size();
+        vector<int>dp(n+1,-1);
+        int ans=solve(0,n,nums,dp);
         
-        int maxJ=0;
-        for(int i=0;i<n;i++){
-            if(maxJ<i){
-                return false;
-            }
-            maxJ=max(maxJ,i+nums[i]);
-        }
-        return true;
+        return ans==10000?false:true;
     }
 };
