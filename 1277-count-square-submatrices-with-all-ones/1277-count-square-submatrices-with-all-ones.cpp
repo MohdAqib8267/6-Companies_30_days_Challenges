@@ -1,6 +1,6 @@
 class Solution {
 public:
-    //DP[i][j] represent how many square end with right bottom corner as i,j
+  //DP[i][j] represent how many square end with right bottom corner as i,j
     // so DP[i][j] = min(left,up,left-up diagonal) +1;
     int countSquares(vector<vector<int>>& matrix) {
         int m=matrix.size();
