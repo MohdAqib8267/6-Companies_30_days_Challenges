@@ -14,8 +14,12 @@ public:
                 res=max(res,len);
             }
             else{
-                mp[s[i]]--;
-                i++;
+                while(len-mx > k){
+                    mp[s[i]]--;
+                     i++;
+                    len=j-i+1;
+                    mx=max(mx,mp[s[i]]);
+                }
             }
             j++;
         }
