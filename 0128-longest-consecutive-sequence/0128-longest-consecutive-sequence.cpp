@@ -1,24 +1,25 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        unordered_map<int,bool>mp;
         int n=nums.size();
+        unordered_map<int,bool>mp;
+       int ans=INT_MIN;
         if(n==0){
             return 0;
         }
         for(int i=0;i<n;i++){
             mp[nums[i]]=true;
         }
-        int ans=INT_MIN;
+        
         for(int i=0;i<n;i++){
-            int curr=nums[i];
-            if(mp[curr-1]==true){//agar false hua to mtlb ki wo sequence ka sabse chota element h
+            int cnt=0;
+            int element = nums[i];
+            if(mp[element-1]==true){//agar false hua to mtlb ki wo sequence ka sabse chota element h
                 continue;
             }
-            int cnt=0;
-            while(mp[curr]==true){
+            while(mp[element]==true){
                 cnt++;
-                curr++;
+                element++;
             }
             ans=max(ans,cnt);
         }
