@@ -1,37 +1,33 @@
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
-        sort(nums.begin(),nums.end());
-        vector<vector<int>>res;
-        set<vector<int>>s;
         int n=nums.size();
-        long long target1=target;
-        for(int i=0;i<n-3;i++){
-            for(int j=i+1;j<n-2;j++){
-                long long lo=j+1;
-                long long hi=n-1;
-                vector<int>ans;
-                long long sum=0;
-                while(lo<hi){
-                     sum=(long long) ((long long)nums[i]+ (long long)nums[j]+ (long long )nums[lo]+ (long long)nums[hi]);
-                    if(sum == target1){
-                        ans = {nums[i], nums[j], nums[lo], nums[hi]};
-                        sort(ans.begin(),ans.end());
-                        s.insert(ans);
-                        lo++;
-                        hi--;
-                    }
-                    else if(sum<target1){
-                        lo++;
-                    }
-                    else{
-                        hi--;
-                    }
+        sort(nums.begin(),nums.end());
+       vector<vector<int>>ans;
+        //[-2,-1,0,0,1,2]
+        set<vector<int>>st;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                int l=j+1, h=n-1;
+                while(l<h){
+                      long long sum=(long long)nums[i]+(long long)nums[j]+(long long)nums[l]+(long long)nums[h];
+                if(sum == target){
+                    st.insert({nums[i],nums[j],nums[l],nums[h]});
+                    l++;
+                    h--;
+                }
+                else if(sum<target){
+                    l++;
+                }
+                else{
+                    h--;
+                }
                 }
             }
         }
-         for (auto x : s)
-            res.push_back(x);
-        return res;
+        for(auto it:st){
+            ans.push_back(it);
+        }
+        return ans;
     }
 };
