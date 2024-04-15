@@ -15,11 +15,11 @@ public:
         return dp[i][j]=grid[i][j]+min({b,r});
     }
     int minPathSum(vector<vector<int>>& grid) {
-        int m=grid.size();
+         int m=grid.size();
         int n=grid[0].size();
         // vector<vector<int>>dp(m+1,vector<int>(n+1,-1));
         // return solve(0,0,m,n,grid,dp);
-        vector<vector<int>>dp(m,vector<int>(n,0));
+         vector<vector<int>>dp(m,vector<int>(n,0));
         dp[0][0]=grid[0][0];
         for(int i=0;i<m;i++){
             for(int j=1;j<n;j++){
