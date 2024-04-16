@@ -1,45 +1,34 @@
 class Solution {
 public:
-    bool isSafe(int i,int j,vector<vector<int>>&grid,int n){
-        int x=i;
-        int y=j;
-        //row left
+    bool isSafe(int row,int col,vector<vector<int>>&grid,int n){
+        int x=row, y=col;
+        //check in row
         while(y>=0){
             if(grid[x][y]==1){
                 return false;
             }
             y--;
         }
-        //row right--> (not required)
+        //check in col --> not required
         
-        //up-left diagonal
-        x=i, y=j;
-        while(x>=0 and y>=0){
+        //check in up-left diagonal
+         x=row, y=col;
+        while(x>=0 && y>=0){
             if(grid[x][y]==1){
                 return false;
             }
-            x--;
-            y--;
+            x--; y--;
         }
-        //down left diagonal
-        x=i, y=j;
-        while(x<n and y>=0){
+        
+        //check in down-left diagonal
+         x=row, y=col;
+        while(x<n && y>=0){
             if(grid[x][y]==1){
                 return false;
             }
-            x++;
-            y--;
-        }
-        //col down
-        x=i,y=j;
-        while(x<n){
-            if(grid[x][y]==1){
-                return false;
-            }
-            x++;
+            x++; y--;
         }
         return true;
-        
     }
     void addans(vector<vector<int>>&grid,vector<vector<string>>&ans,int n){
        vector<string>temp;
@@ -58,23 +47,24 @@ public:
         }
         ans.push_back(temp);
     }
-    void solve(int col,vector<vector<int>>&grid,vector<vector<string>>&ans,int n){
-        if(col==n){
+    void solve(int col,int n,vector<vector<int>>&grid,vector<vector<string>>&ans){
+        if(col>=n){
             addans(grid,ans,n);
             return;
         }
         for(int row=0;row<n;row++){
-            if(isSafe(row,col,grid,n)){
-                grid[row][col]=1;
-                solve(col+1,grid,ans,n);
-                grid[row][col]=0;
-            }
+           if(isSafe(row,col,grid,n)){
+               grid[row][col]=1;
+               solve(col+1,n,grid,ans);  
+               grid[row][col]=0;
+           } 
         }
+        
     }
     vector<vector<string>> solveNQueens(int n) {
-        vector<vector<int>>grid(n,vector<int>(n,0));
         vector<vector<string>>ans;
-        solve(0,grid,ans,n);
+        vector<vector<int>>grid(n,vector<int>(n,0));
+        solve(0,n,grid,ans);
         return ans;
     }
 };
