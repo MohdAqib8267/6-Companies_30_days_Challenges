@@ -11,33 +11,36 @@
  */
 class Solution {
 public:
-      void dfs(TreeNode* root,string temp,vector<string>& ans){
+    void solve(TreeNode* root,vector<int>temp,vector<vector<int>>&paths){
+        if(root!= NULL && root->left==NULL && root->right==NULL){
+            temp.push_back(root->val);
+            paths.push_back(temp);
+            return;
+        }
         if(root==NULL){
-            
             return;
         }
-        temp=temp+to_string(root->val)+"->";
-        if(root->left==NULL and root->right==NULL){
-        
-            temp.pop_back();
-             temp.pop_back();
-            ans.push_back(temp);
-            return;
-        }
-        if(root->left!=NULL){
-           
-            dfs(root->left,temp,ans);
-        }
-        if(root->right!=NULL){
-         
-            dfs(root->right,temp,ans);
-        }
-        
+        temp.push_back(root->val);
+        solve(root->left,temp,paths);
+        solve(root->right,temp,paths);
     }
     vector<string> binaryTreePaths(TreeNode* root) {
         vector<string>ans;
-        string temp="";
-        dfs(root,temp,ans);
+        vector<vector<int>>paths;
+        vector<int>temp;
+        solve(root,temp,paths);
+        for(auto it:paths){
+            vector<int>path=it;
+            string str="";
+            for(int i=0;i<path.size();i++){
+                if(i != path.size()-1){
+                    str=str+to_string(path[i])+"->";
+                }else{
+                    str=str+to_string(path[i]);
+                }
+            }
+            ans.push_back(str);
+        }
         return ans;
     }
 };
