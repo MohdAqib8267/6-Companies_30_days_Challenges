@@ -14,18 +14,18 @@ public:
     bool flag=true;
     int solve(TreeNode* root){
         if(root==NULL) return 0;
-        int lh=solve(root->left);
-        int rh=solve(root->right);
-        if(abs(lh-rh)>1){
+        int left=solve(root->left);
+        int right=solve(root->right);
+        if(abs(left-right)>1){
             flag=false;
         }
-        return 1+max(lh,rh);
+        return 1+max(left,right);
     }
     bool isBalanced(TreeNode* root) {
-       
+        if(root==NULL){
+            return true;
+        }
         int ans=solve(root);
-        cout<<ans;
         return flag;
-        
     }
 };
