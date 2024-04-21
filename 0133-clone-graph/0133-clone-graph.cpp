@@ -21,25 +21,24 @@ public:
 
 class Solution {
 public:
-    void DFS(Node* node,Node* copy,vector<Node*>&vis){
+    void DFS(Node* node, Node* copy, vector<Node*>&vis){
         vis[copy->val]=copy;
         for(auto it:node->neighbors){
             if(!vis[it->val]){
                 Node* newNode=new Node(it->val);
                 (copy->neighbors).push_back(newNode);
                 DFS(it,newNode,vis);
-            }else{
+            }
+            else{
                 (copy->neighbors).push_back(vis[it->val]);
             }
-            
         }
-      
     }
     Node* cloneGraph(Node* node) {
-        if(node == NULL){
+        if(node==NULL){
             return NULL;
         }
-        Node* copy = new Node(node->val);
+        Node* copy=new Node(node->val);
         vector<Node*>vis(1000,NULL);
         DFS(node,copy,vis);
         return copy;
