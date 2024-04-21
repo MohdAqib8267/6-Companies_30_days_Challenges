@@ -1,15 +1,14 @@
 class Solution {
 public:
-    bool isCycle(int src,vector<int>&stack,vector<int>&vis,vector<int>adj[]){
+    bool isCycle(int src,vector<int>adj[],vector<int>&vis,vector<int>&stack){
         vis[src]=true;
         stack[src]=true;
         for(auto it:adj[src]){
             if(!vis[it]){
-                if(isCycle(it,stack,vis,adj)){
+                if(isCycle(it,adj,vis,stack)){
                     return true;
                 }
-            }
-            else if(stack[it]){
+            }else if(stack[it]){
                 return true;
             }
         }
@@ -17,17 +16,17 @@ public:
         return false;
     }
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-        int v=numCourses;
-        vector<int>adj[v];
-        for(int i=0;i<prerequisites.size();i++){
+        vector<int>adj[numCourses];
+         for(int i=0;i<prerequisites.size();i++){
             int a=prerequisites[i][0];
             int b=prerequisites[i][1];
             adj[b].push_back(a);
         }
-        vector<int>stack(v,0);
-        vector<int>vis(v,0);
-        for(int i=0;i<v;i++){
-            if(isCycle(i,stack,vis,adj)){
+        //if cycle present then we can schedule
+        vector<int>vis(numCourses,0);
+        vector<int>stack(numCourses,0);
+        for(int i=0;i<numCourses;i++){
+            if(isCycle(i,adj,vis,stack)){
                 return false;
             }
         }
