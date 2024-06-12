@@ -1,22 +1,22 @@
 class Solution {
 public:
-    int solve(int i,int buy,int sell,vector<int>& prices,int n){
-        if(i>=n){
+    int solve(int i,int b,int s,vector<int>& prices){
+        if(i>=prices.size()){
             return 0;
         }
-        int b=0,s=0;
-        if( prices[i]<prices[buy]){
-            //buy stock
-           b=solve(i+1,i,sell,prices,n); 
-        }else{
-            //sell
-            s=(prices[i]-prices[buy])+solve(i+1,i,i,prices,n);
+        
+        int buy=0,sell=0;
+        if(prices[i]<prices[b]){
+            buy=solve(i+1,i,s,prices);
         }
-        return max(b,s);
+        else{
+            sell = (prices[i]-prices[b])+solve(i+1,i,i,prices);
+        }
+        
+        return max(buy,sell);
+        
     }
     int maxProfit(vector<int>& prices) {
-        int n=prices.size();
-        return solve(1,0,0,prices,n);
-        
+        return solve(1,0,0,prices);
     }
 };
