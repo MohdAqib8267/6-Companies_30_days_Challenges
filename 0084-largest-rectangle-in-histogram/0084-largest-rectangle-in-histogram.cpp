@@ -1,55 +1,57 @@
 class Solution {
 public:
-    vector<int>prevSmall(vector<int>& heights){
-        int n=heights.size();
-        vector<int>ans(n);
-        ans[0]=-1;
+    vector<int>prevSmall(vector<int>&heights){
+        vector<int>res(heights.size());
+     
         stack<int>st;
         st.push(0);
-        for(int i=1;i<n;i++){
-            while(!st.empty() and heights[i]<=heights[st.top()]){
+        res[0]=-1;
+        for(int i=1;i<heights.size();i++){
+            while(!st.empty() && heights[st.top()]>=heights[i]){
                 st.pop();
-            } 
+            }
             if(st.empty()){
-                ans[i]=-1;
+                res[i]=-1;
             }
             else{
-                ans[i]=st.top();
+                res[i]=st.top();
             }
             st.push(i);
         }
-        return ans;
-       
+        return res;
     }
-    vector<int>nextSmall(vector<int>& heights){
-        int n=heights.size();
-        vector<int>ans(n);
-        ans[n-1]=n;
+    vector<int>nextSmall(vector<int>&heights){
+        vector<int>res(heights.size());
+        res[heights.size()-1]=heights.size();
         stack<int>st;
-        st.push(n-1);
-        for(int i=n-2;i>=0;i--){
-            while(!st.empty() and heights[i]<=heights[st.top()]){
+        st.push(heights.size()-1);
+      
+        for(int i=heights.size()-2;i>=0;i--){
+            while(!st.empty() && heights[st.top()]>=heights[i]){
                 st.pop();
-            } 
+            }
             if(st.empty()){
-                ans[i]=n;
+                res[i]=heights.size();
             }
             else{
-                ans[i]=st.top();
+                res[i]=st.top();
             }
             st.push(i);
         }
-        return ans;
-       
+        return res;
     }
     int largestRectangleArea(vector<int>& heights) {
         int n=heights.size();
-        vector<int>prevSmaller=prevSmall(heights);
-        vector<int>nextSmaller=nextSmall(heights);
-        int res=0;
+        int ans=0;
+        vector<int>prev = prevSmall(heights);
+        vector<int>next = nextSmall(heights);
+        //prev [-1,-1,1,2,1,4]
+        //next [1,6,4,4,6,6]
+        
         for(int i=0;i<n;i++){
-            res=max(res,(nextSmaller[i]-prevSmaller[i]-1)*heights[i]);
+            int area = (next[i]-prev[i]-1)*heights[i];
+            ans=max(ans,area);
         }
-        return res;
+        return ans;
     }
 };
