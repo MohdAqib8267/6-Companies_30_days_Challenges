@@ -10,90 +10,31 @@
  */
 class Solution {
 public:
-   //1. stack me bhar lo and traverse kro list per and stack k top element se compare krte jao
-    
-    //2nd half list reverse
-      ListNode* reverse(ListNode*head)
-    {
-        if(!head)return head;
-        ListNode*prev=NULL,*temp=head;
-        while(temp)
-        {
-            ListNode* curr=temp->next;
-            temp->next=prev;
-            prev=temp;
-            temp=curr;
+    ListNode* reverse(ListNode* head){
+        if(head==NULL || head->next==NULL){
+            return head;
         }
-        return prev;
+        ListNode* last = reverse(head->next);
+        head->next->next=head;
+        head->next=NULL;
+        return last;
     }
-    
-    bool isPalindrome(ListNode* head) 
-    {
-//         ListNode*temp=head;
-//         int l=0;
-//         while(temp)
-//         {
-//             l++;
-//             temp=temp->next;
-//         }
-//         temp=head;        
-//         int x=l/2;
-//         if(l%2==0)
-//         {            
-//             while(x--){
-//                  temp=temp->next;
-//             }
-           
-//         }       
-//         else
-//         {           
-//             while(x--){
-//                  temp=temp->next;
-//             }
-               
-//             temp=temp->next;
-//         }
-        
-//         temp=reverse(temp);
-        
-//         while(head && temp)
-//         {
-//             if(head->val!=temp->val)
-//                 return false;
-//             head=head->next;
-//             temp=temp->next;
-//         }
-//         return true;
-        int l=0;
-        ListNode*temp=head;
-        while(temp)
-        {
-            l++;
-            temp=temp->next;
-         }
+    bool isPalindrome(ListNode* head) {
         ListNode* slow=head;
         ListNode* fast=head;
-        while(fast!=NULL and fast->next!=NULL){
+        while(fast!=NULL && fast->next!=NULL){
             slow=slow->next;
             fast=fast->next->next;
         }
-        
-        if(l%2==0){
-            temp=reverse(slow); 
-        }else{
-            slow=slow->next;
-            temp=reverse(slow);
-        }
-        ListNode* curr=head;
-        while(temp!=NULL){
-            if(curr->val!=temp->val){
+        fast=head;
+        ListNode* l1=reverse(slow);
+        while(l1!=NULL){
+            if(fast->val != l1->val){
                 return false;
             }
-            temp=temp->next;
-            curr=curr->next;
+            fast=fast->next;
+            l1=l1->next;
         }
         return true;
-       
-        
     }
 };
