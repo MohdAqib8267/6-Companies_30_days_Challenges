@@ -1,6 +1,6 @@
 class Solution {
 public:
-    string longestPalindrome(string s) {
+   string longestPalindrome(string s) {
         int n=s.size();
         int ans=1;
         int st=0;
