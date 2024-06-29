@@ -29,7 +29,22 @@ public:
         int n=s.size();
         // vector<int>dp(n+1,-1);
         // return solve(0,s,n,dp);
-        vector<int>dp(n+1,0);
+        
+        // vector<int>dp(n+1,0);
+        // for(int i=n-1;i>=0;i--){
+        //     int cnt=0;
+        //     for(int j=i;j<n;j++){
+        //         if(isPalindrome(i,j,s)){
+        //             cnt++;
+        //         }
+        //     }
+        //     dp[i]=cnt+dp[i+1];
+        // }
+        // return dp[0];
+        
+        //space
+        int next=0;
+        int curr;
         for(int i=n-1;i>=0;i--){
             int cnt=0;
             for(int j=i;j<n;j++){
@@ -37,8 +52,9 @@ public:
                     cnt++;
                 }
             }
-            dp[i]=cnt+dp[i+1];
+             curr=cnt+next;
+            next=curr;
         }
-        return dp[0];
+        return curr;
     }
 };
