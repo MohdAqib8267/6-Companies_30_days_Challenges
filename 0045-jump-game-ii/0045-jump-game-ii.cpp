@@ -15,7 +15,17 @@ public:
     }
     int jump(vector<int>& nums) {
         int n=nums.size();
-        vector<int>dp(n+1,-1);
-        return solve(0,nums,n,dp);
+        // vector<int>dp(n+1,-1);
+        // return solve(0,nums,n,dp);
+        
+        vector<int>dp(n+1,INT_MAX);
+        dp[1]=0;
+        for(int i=1;i<n+1;i++){
+            for(int j=1;j<i;j++){
+                if((j-1)+nums[j-1]>=(i-1))
+                dp[i]=min(dp[i],1+dp[j]);
+            }
+        }
+        return dp[n];
     }
 };
