@@ -28,7 +28,19 @@ public:
     }
     int minCut(string s) {
         int n=s.size();
-        vector<int>dp(n+1,-1);
-        return solve(0,n,s,dp)-1;
+        // vector<int>dp(n+1,-1);
+        // return solve(0,n,s,dp)-1;
+        
+        //Tabulation
+        vector<int>dp(n+1,2000+9);
+        dp[0]=0;
+        for(int i=1;i<n+1;i++){
+            for(int j=i;j<n+1;j++){
+                if(isPalindrome(i-1,j-1,s)){
+                    dp[j]=min(dp[j],1+dp[i-1]);
+                }
+            }
+        }
+        return dp[n]-1;
     }
 };
