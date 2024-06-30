@@ -34,10 +34,19 @@ public:
         //Tabulation
         vector<int>dp(n+1,2000+9);
         dp[0]=0;
+        // for(int i=1;i<n+1;i++){
+        //     for(int j=i;j<n+1;j++){
+        //         if(isPalindrome(i-1,j-1,s)){
+        //             dp[j]=min(dp[j],1+dp[i-1]);
+        //         }
+        //     }
+        // }
+        
+        //cddpd
         for(int i=1;i<n+1;i++){
-            for(int j=i;j<n+1;j++){
-                if(isPalindrome(i-1,j-1,s)){
-                    dp[j]=min(dp[j],1+dp[i-1]);
+            for(int j=1;j<=i;j++){
+                if(isPalindrome(j-1,i-1,s)){
+                    dp[i]=min(dp[i],1+dp[j-1]);
                 }
             }
         }
