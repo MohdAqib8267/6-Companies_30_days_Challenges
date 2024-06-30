@@ -21,17 +21,35 @@ public:
         // return solve(0,0,s1,s2,n1,n2,dp);
         
         //Tabulation
-        vector<vector<int>>dp(n1+1,vector<int>(n2+1,0));
+        // vector<vector<int>>dp(n1+1,vector<int>(n2+1,0));
+        // for(int i=1;i<n1+1;i++){
+        //     for(int j=1;j<n2+1;j++){
+        //         if(s1[i-1]==s2[j-1]){
+        //             dp[i][j] = 1+dp[i-1][j-1];
+        //         }
+        //         else{
+        //             dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+        //         }
+        //     }
+        // }
+        // return dp[n1][n2];
+        
+        //space optimise
+         vector<int>curr(n2+1,0),prev(n2+1,0);
         for(int i=1;i<n1+1;i++){
             for(int j=1;j<n2+1;j++){
                 if(s1[i-1]==s2[j-1]){
-                    dp[i][j] = 1+dp[i-1][j-1];
+                    curr[j] = 1+prev[j-1];
                 }
                 else{
-                    dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+                    curr[j]=max(prev[j],curr[j-1]);
                 }
             }
+            prev=curr;
         }
-        return dp[n1][n2];
+       for(int i=0;i<=n2;i++){
+           cout<<prev[i]<<" ";
+       }
+        return prev[n2];
     }
 };
