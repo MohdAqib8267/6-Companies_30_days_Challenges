@@ -1,28 +1,23 @@
 class Solution {
 public:
-    int characterReplacement(string s, int k) {
-        int n=s.size();
-        unordered_map<char,int>mp;
-        int i=0,j=0;
-        int mx=INT_MIN;
-        int res=INT_MIN;
-        while(j<n){
-            mp[s[j]]++;
-            mx=max(mx,mp[s[j]]);
-            int len=j-i+1;
-            if(len-mx <= k){
-                res=max(res,len);
-            }
-            else{
-                while(len-mx > k){
-                    mp[s[i]]--;
-                     i++;
-                    len=j-i+1;
-                    mx=max(mx,mp[s[i]]);
-                }
-            }
-            j++;
-        }
-        return res;
+    int characterReplacement(string str, int k) {
+        int windowStart = 0,windowEnd=0, maxLength = 0, maxRepeatLetterCount = 0;
+    unordered_map<char, int> letterFrequencyMap;
+    
+    while( windowEnd < str.length()) {
+      char rightChar = str[windowEnd];
+      letterFrequencyMap[rightChar]++;
+      maxRepeatLetterCount = max(maxRepeatLetterCount, letterFrequencyMap[rightChar]);
+      if ((windowEnd - windowStart + 1 - maxRepeatLetterCount) > k) {
+        char leftChar = str[windowStart];
+        letterFrequencyMap[leftChar]--;
+        windowStart++;
+      }
+
+      maxLength = max(maxLength, windowEnd - windowStart + 1);
+        windowEnd++;
+    }
+
+    return maxLength;
     }
 };
