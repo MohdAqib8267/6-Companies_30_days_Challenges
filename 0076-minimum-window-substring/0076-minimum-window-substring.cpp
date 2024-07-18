@@ -1,44 +1,42 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        int m=s.size();
-        int n=t.size();
-        unordered_map<char,int>freq1;
-        unordered_map<char,int>freq2;
-        for(auto ch:t){
-            freq2[ch]++;
+        int ns=s.size(), nt=t.size();
+        if(nt>ns){
+            return "";
         }
-        int st=-1;
-        int i=0,j=0;
+        unordered_map<char,int>mp;
+        for(auto it:t){
+            mp[it]++;
+        }
         int cnt=0;
-        int ans=INT_MAX;
-        while(j<m){
-            if(freq2.find(s[j])!=freq2.end()){
-                if(freq1[s[j]]<freq2[s[j]]){
-                     cnt++;
+        unordered_map<char,int>mps;
+        int i=0,j=0;
+        int st=-1;
+        int len=INT_MAX;
+        while(j<ns){
+            if(mp.find(s[j])!=mp.end()){
+                mps[s[j]]++;
+                if(mp[s[j]]==mps[s[j]]){
+                    cnt++;
                 }
-                freq1[s[j]]++;
             }
-            while(t.size()==cnt){
-                
-                if(j-i+1<ans){
-                    ans=j-i+1;
+            
+            while(cnt>=mp.size()){
+                if(j-i+1 < len){
+                    len=j-i+1;
                     st=i;
                 }
-                if(freq2.find(s[i])!=freq2.end()){
-                     freq1[s[i]]--;
-                    if(freq1[s[i]]<freq2[s[i]]){
+                if(mp.find(s[i])!=mp.end()){
+                    mps[s[i]]--;
+                    if(mp[s[i]]>mps[s[i]]){
                         cnt--;
                     }
-                   
                 }
                 i++;
             }
             j++;
         }
-        if(st!=-1){
-            return s.substr(st,ans);
-        }else
-        return "";
+        return len==INT_MAX?"":s.substr(st,len);
     }
 };
