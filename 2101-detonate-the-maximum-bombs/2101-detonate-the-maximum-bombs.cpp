@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void dfs(int i,int &cnt,vector<vector<int>>&adj,vector<int>&vis){
+    void dfs(int i,int &cnt,vector<int>adj[],vector<int>&vis){
         vis[i]=1;
         cnt++;
         for(auto it:adj[i]){
@@ -11,18 +11,17 @@ public:
     }
     int maximumDetonation(vector<vector<int>>& bombs) {
         int n=bombs.size();
-        vector<vector<int>>adj(n);
+        vector<int>adj[n];
         for(int i=0;i<n;i++){
-            int x1=bombs[i][0];
-            int y1=bombs[i][1];
+            long long x1=bombs[i][0];
+             long long y1=bombs[i][1];
             long long r1=bombs[i][2];
             for(int j=0;j<n;j++){
-                if(i!=j){
-                    long long x=abs(bombs[j][0]-x1);
-                    long long y=abs(bombs[j][1]-y1);
-                    if(x*x+y*y <= r1*r1){
-                        adj[i].push_back(j);
-                    }
+                 long long x2=bombs[j][0];
+                 long long y2=bombs[j][1];
+                int r2=bombs[j][2];
+                if((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2) <= r1*r1){
+                    adj[i].push_back(j);
                 }
             }
         }
@@ -34,6 +33,5 @@ public:
             ans=max(ans,cnt);
         }
         return ans;
-        
     }
 };
