@@ -1,33 +1,29 @@
 class Solution {
 public:
     int minDeletions(string s) {
-        int n=s.size();
-        unordered_map<char,int>mp;
-        for(int i=0;i<n;i++){
+         unordered_map<char,int>mp;
+        for(int i=0;i<s.size();i++){
             mp[s[i]]++;
         }
-        priority_queue<pair<int,char>>pq;
+        vector<int>temp;
         for(auto it:mp){
-            pq.push({it.second,it.first});
+            temp.push_back(it.second);
         }
-        int front=-1;
+        
+        set<int>st;
         int cnt=0;
-        while(!pq.empty()){
-            auto p=pq.top();
-            pq.pop();
-            if(p.first==0){
-                continue;
-            }
-            if(front==-1){
-                front=p.first;
+        for(int i=0;i<temp.size();i++){
+            if(st.empty()){
+                st.insert(temp[i]);
             }
             else{
-                if(front==p.first){
+                if(st.find(temp[i])!=st.end()){
                     cnt++;
-                    pq.push({--p.first,p.second});
-                }
-                else{
-                    front=p.first;
+                    temp[i]--;
+                    i--;
+                }else{
+                    if(temp[i]!=0)
+                    st.insert(temp[i]);
                 }
             }
         }
