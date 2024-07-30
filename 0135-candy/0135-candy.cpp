@@ -5,7 +5,7 @@ public:
         vector<int>candies(n,1);
         //[5, 6, 2, 2, 4, 8, 9, 5, 4, 0, 5, 1]
         //[1, 2, 1, 1, 2, 3, 4, 1, 1, 1, 2, 1] left to right
-        //[ 1,2, 1, 1,  2, 3, 4, 1, 2, 1, 2, 1] right to left
+        //[1, 2, 1, 1, 2, 3, 4, 3, 2, 1, 2, 1] right to left
         int sum=0;
         for(int i=0;i<n-1;i++){
             if(ratings[i]<ratings[i+1]){
