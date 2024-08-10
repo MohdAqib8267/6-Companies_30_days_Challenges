@@ -1,5 +1,13 @@
 class Solution {
 public:
+//     We can upscale the input grid to [n * 3][n * 3] grid and draw "lines" there. Then, we can paint empty regions using DFS and count them. Picture below says it all. Note that [n * 2][n * 2] grid does not work as "lines" are too thick to identify empty areas correctly.
+
+// This transform this problem into 200. Number of Islands, where lines ('1') are the water, and rest ('0') is the land.
+
+// I came up with this solution after I drew a few examples, and because I was lazy and saw it as an easy way.
+    
+    
+    //[" /","/ "] it's 1*2 grid. (0,1)='/' and (0,2)='/'
     void dfs(int i,int j,vector<vector<int>>&g){
         if(i<0 || i>=g.size() || j<0 || j>=g[0].size() || g[i][j]==1){
             return;
