@@ -15,10 +15,10 @@ public:
         if(n==2) return 2;
         if(n==3) return 3;
         if(n==4 || n==5) return n;
-        int divisor = prime(n);
-        if(divisor == -1) return n;
+        int higestDivisor = prime(n);
+        if(higestDivisor == -1) return n;
         
-        int cnt=n/divisor + solve(divisor);
+        int cnt=n/higestDivisor + solve(higestDivisor);
         
         return cnt;
     }
