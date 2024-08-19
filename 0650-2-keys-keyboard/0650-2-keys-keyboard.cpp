@@ -22,6 +22,8 @@ public:
         
         return cnt;
     }
+      // dp vector to store <step,value> result for using in future
+    int dp[1001][1001];
     int recursion(int step, int val,int copy,int n){
         if(step>n || val>n){
             return INT_MAX;
@@ -29,12 +31,13 @@ public:
         if(val==n){
             return step;
         }
+        if(dp[step][val]!=-1) return dp[step][val];
         // return min step to reach the target value
         // there are 2 choices: paste copied value with current value => 1 step
         // copy current value and paste it with itself => 2 step
         int pasteOneStep = recursion(step+1,val+copy, copy, n);
         int copypasteTwoStep = recursion(step+2,2*val,val,n);
-        return min(pasteOneStep,copypasteTwoStep);
+        return dp[step][val]= min(pasteOneStep,copypasteTwoStep);
         
     }
     int minSteps(int n) {
@@ -47,7 +50,12 @@ public:
         //assume that we have copy the number(1 step done) and my value is A
         // return recursion(1,'A','A',n); //step 1, current Val 'A', copy item 'A',
         // here we need n, A's so we can show A-->1
-        return recursion(1,1,1,n);
+        
+        
+        memset(dp,-1,sizeof(dp));
+        return recursion(1,1,1,n); //meoize krey
+        
+        
         
     }
 };
