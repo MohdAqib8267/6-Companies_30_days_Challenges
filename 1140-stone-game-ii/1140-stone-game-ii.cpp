@@ -1,6 +1,7 @@
 class Solution {
 public:
-//     [2,7,9,4] suff=[22,20,13,4]
+//     [2,7,9,4] suff=[22,20,13,4] follow below link
+    //https://leetcode.com/problems/stone-game-ii/discuss/3563547/Image-Explanation-Recursion-Tree-Recursion-greaterMemo-greaterBottom-Up-%2B-Suffix-Sums-C%2B%2BJavaPython
     int helper(vector<int>& piles, vector<vector<int>>& dp, const vector<int>& suffixSum, int i, int M) {
         if (i == piles.size()) return 0; 
         if (i + 2 * M >= piles.size()) return suffixSum[i]; 
