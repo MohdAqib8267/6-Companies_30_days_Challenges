@@ -11,20 +11,19 @@
  */
 class Solution {
 public:
-    void solve(TreeNode* root,int &ans,int mx){
-        if(root==NULL) return;
-        if(root->val>=mx){
-            //root ki value current path ki max value se zyada hai, mtlb koi node nhi hai kmm  ki
-            ans++;
-            mx=max(mx,root->val);
+    int cnt=0;
+    void solve(TreeNode* root,int mx){
+        if(root==NULL){
+            return;
         }
-        solve(root->left,ans,mx);
-        solve(root->right,ans,mx);
+        if(root->val >= mx){
+            cnt++;
+        }
+        solve(root->left,max(mx,root->val));
+        solve(root->right,max(mx,root->val));
     }
     int goodNodes(TreeNode* root) {
-        int ans=0;
-        int mx=INT_MIN;
-         solve(root,ans,mx);
-        return ans;
+         solve(root,root->val);
+        return cnt;
     }
 };
