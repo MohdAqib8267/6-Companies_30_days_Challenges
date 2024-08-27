@@ -22,8 +22,26 @@ public:
         return dp[i]=cnt;
     }
     int countSubstrings(string s) {
-        vector<int>dp(s.size()+1,-1);
-       return solve(0,s,dp);
+        // vector<int>dp(s.size()+1,-1);
+       // return solve(0,s,dp);
         
+        //Tabulation
+        //aaa   
+        vector<int>dp(s.size()+1,0);
+        int n=s.size();
+        for(int i=n-1;i>=0;i--){
+            int cnt=0;
+            for(int j=i;j<s.size();j++){
+                if(isPalindrome(i,j,s)){
+                    cnt++;
+                }
+            }
+            dp[i]=cnt;
+        }
+        int sum=0;
+        for(int i=0;i<dp.size();i++){
+            sum+=dp[i];
+        }
+        return sum;
     }
 };
