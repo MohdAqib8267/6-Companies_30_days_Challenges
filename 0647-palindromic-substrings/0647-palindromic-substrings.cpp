@@ -27,21 +27,33 @@ public:
         
         //Tabulation
         //aaa   
-        vector<int>dp(s.size()+1,0);
+//         vector<int>dp(s.size()+1,0);
         int n=s.size();
+//         for(int i=n-1;i>=0;i--){
+//             int cnt=0;
+//             for(int j=i;j<s.size();j++){
+//                 if(isPalindrome(i,j,s)){
+//                     cnt++;
+//                 }
+//             }
+//             dp[i]=cnt+dp[i+1];
+//         }
+        
+//        return dp[0];
+        
+        //space
+        int next=0;
+        int curr;
         for(int i=n-1;i>=0;i--){
             int cnt=0;
-            for(int j=i;j<s.size();j++){
+            for(int j=i;j<n;j++){
                 if(isPalindrome(i,j,s)){
                     cnt++;
                 }
             }
-            dp[i]=cnt;
+            curr=cnt+next;
+            next=curr;
         }
-        int sum=0;
-        for(int i=0;i<dp.size();i++){
-            sum+=dp[i];
-        }
-        return sum;
+        return curr;
     }
 };
