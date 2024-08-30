@@ -14,17 +14,14 @@ public:
     int widthOfBinaryTree(TreeNode* root) {
         queue<pair<TreeNode*,int>>q;
         q.push({root,0});
-        if(root==NULL){
-            return 0;
-        }
         int ans=0;
         while(!q.empty()){
             int sz=q.size();
             int first,last;
             for(int i=0;i<sz;i++){
-                auto p=q.front();
+                auto p = q.front();
                 q.pop();
-                TreeNode* node=p.first;
+                TreeNode* node= p.first;
                 int pos=p.second;
                 if(i==0){
                     first=pos;
