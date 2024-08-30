@@ -11,26 +11,25 @@
  */
 class Solution {
 public:
-    void DFS(TreeNode* root,vector<int>& ans,int sum){
-        if(root==NULL){
-            
+    vector<int>ans;
+    void solve(TreeNode* root,int total){
+          if(root==NULL){
             return;
         }
-        sum=sum*10+root->val;
-        if(root->left==NULL and root->right==NULL){
-            ans.push_back(sum);
+        if(root->left ==NULL && root->right == NULL){
+            total=10*total+root->val;
+            ans.push_back(total);
+            return;
         }
-        DFS(root->left,ans,sum);
-        DFS(root->right,ans,sum);
+      
+        total=10*total+root->val;
+        solve(root->left,total);
+        solve(root->right,total);
+        
     }
     int sumNumbers(TreeNode* root) {
-        vector<int>ans;
-        DFS(root,ans,0);
-        int res=0;
-        for(int i=0;i<ans.size();i++){
-            res=res+ans[i];
-        }
-        return res;
-        
+        int total=0;
+         solve(root,total);
+        return accumulate(ans.begin(),ans.end(),0);
     }
 };
