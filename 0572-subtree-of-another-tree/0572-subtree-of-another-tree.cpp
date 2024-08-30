@@ -11,22 +11,17 @@
  */
 class Solution {
 public:
-    bool solve(TreeNode* root,TreeNode* subRoot){
-        if(root==NULL and subRoot != NULL){
-            return false;
-        }
-        if(root!=NULL and subRoot==NULL){
-            return false;
-        }
-         if(root==NULL and subRoot==NULL){
+    bool solve(TreeNode* root,TreeNode* subroot){
+        if(root==NULL && subroot==NULL){
             return true;
         }
-        if(root->val!=subRoot->val){
+        if(root==NULL || subroot==NULL){
             return false;
         }
-        bool left=solve(root->left, subRoot->left);
-        bool right=solve(root->right,subRoot->right);
-        return left && right;
+        if(root->val!=subroot->val){
+            return false;
+        }
+        return solve(root->left,subroot->left) && solve(root->right,subroot->right);
     }
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
         if(root==NULL){
@@ -37,8 +32,9 @@ public:
                 return true;
             }
         }
-        bool left = isSubtree(root->left,subRoot);
+         bool left = isSubtree(root->left,subRoot);
         bool right = isSubtree(root->right,subRoot);
         return left || right;
+        
     }
 };
