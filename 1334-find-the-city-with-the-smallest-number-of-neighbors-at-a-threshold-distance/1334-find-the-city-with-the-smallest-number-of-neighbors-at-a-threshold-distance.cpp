@@ -1,6 +1,6 @@
 class Solution {
 public:
-     int djk(int src,int n,unordered_map<int,list<pair<int,int>>>&adj,int distanceThreshold){
+     int djk(int src,int n,vector<pair<int,int>>adj[],int distanceThreshold){
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>q;
         vector<int>dis(n,1e9);
         dis[src]=0;
@@ -27,7 +27,7 @@ public:
         return ans;
     }
     int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {
-        unordered_map<int,list<pair<int,int>>>adj;
+        vector<pair<int,int>>adj[n];
         for(int i=0;i<edges.size();i++){
             adj[edges[i][0]].push_back({edges[i][1],edges[i][2]});
             adj[edges[i][1]].push_back({edges[i][0],edges[i][2]});
@@ -42,5 +42,6 @@ public:
             }
         }
         return ans;
+
     }
 };
