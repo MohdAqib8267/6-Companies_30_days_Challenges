@@ -41,5 +41,4 @@ public:
         vector<bool>visited(n,0);
         return solve(nums,visited,0,k,0,avg);
     }
-
 };
