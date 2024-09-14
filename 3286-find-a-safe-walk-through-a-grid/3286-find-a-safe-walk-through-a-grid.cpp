@@ -8,7 +8,8 @@ public:
         if (row==m-1 && col==n-1) {
             return hlt>grid[row][col];
         }
-        if (dp[row][col][hlt]!=-1) return dp[row][col][hlt]==1;
+        if (dp[row][col][hlt]!=-1) return dp[row][col][hlt];
+     
         vis[row][col] = true;
         bool up = check(grid,row-1,col,hlt-grid[row][col]);
         bool dw = check(grid,row+1,col,hlt-grid[row][col]);
@@ -16,10 +17,7 @@ public:
         bool rf = check(grid,row,col+1,hlt-grid[row][col]);
         vis[row][col] = false;
         bool result = up || dw || lf || rf;
-        // if(result){
-        //     dp[row][col][hlt]=1;
-        // }
-        // else dp[row][col][hlt]=0;
+       
         return dp[row][col][hlt]=result;
     }
     bool findSafeWalk(vector<vector<int>>& grid, int health) {
