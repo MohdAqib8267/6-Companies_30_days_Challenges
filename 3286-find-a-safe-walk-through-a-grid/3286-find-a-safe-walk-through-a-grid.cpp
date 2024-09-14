@@ -16,11 +16,11 @@ public:
         bool rf = check(grid,row,col+1,hlt-grid[row][col]);
         vis[row][col] = false;
         bool result = up || dw || lf || rf;
-        if(result){
-            dp[row][col][hlt]=1;
-        }
-        else dp[row][col][hlt]=0;
-        return result;
+        // if(result){
+        //     dp[row][col][hlt]=1;
+        // }
+        // else dp[row][col][hlt]=0;
+        return dp[row][col][hlt]=result;
     }
     bool findSafeWalk(vector<vector<int>>& grid, int health) {
         int n=grid.size(), m=grid[0].size();
