@@ -14,10 +14,26 @@ class Solution {
             mp.get(sortedString).add(str);
             
         }
-        for(Map.Entry<String,List<String>>entry:mp.entrySet()){
-            // System.out.println(entry.getValue());
-            ans.add(new ArrayList<>(entry.getValue()));
-        }
+        //1
+        // for(Map.Entry<String,List<String>>entry:mp.entrySet()){
+        //     // System.out.println(entry.getValue());
+        //     ans.add(new ArrayList<>(entry.getValue()));
+        // }
+        
+        // Iterate over the keys
+        // for (String key : map.keySet()) {
+        //     System.out.println("Key: " + key);
+        // }
+        
+         // Iterate over the values
+        // for (Integer value : map.values()) {
+        //     System.out.println("Value: " + value);
+        // }
+        
+        mp.forEach((key,value)->{
+            // System.out.println(key + " => " + value);
+             ans.add(new ArrayList<>(value));
+        });
         return ans;
     }
 }
